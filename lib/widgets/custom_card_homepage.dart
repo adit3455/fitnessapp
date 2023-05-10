@@ -6,7 +6,9 @@ import 'export_widgets.dart';
 class CustomCardHomePage extends StatelessWidget {
   final String image;
   final String labelText;
+  final void Function()? onPressed;
   const CustomCardHomePage({
+    this.onPressed,
     required this.image,
     required this.labelText,
     super.key,
@@ -19,7 +21,7 @@ class CustomCardHomePage extends StatelessWidget {
       borderRadius: BorderRadius.circular(20.0),
       child: InkWell(
         splashColor: AppUtils.gradientRightBackgroundColor,
-        onTap: () {},
+        onTap: onPressed,
         borderRadius: BorderRadius.circular(20.0),
         child: Container(
           height: 130.h,

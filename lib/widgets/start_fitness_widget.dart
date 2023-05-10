@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../utils/export_utils.dart';
 
 class StartFitnessWidget extends StatelessWidget {
+  final void Function()? onTap;
   const StartFitnessWidget({
+    this.onTap,
     super.key,
   });
 
@@ -15,7 +17,7 @@ class StartFitnessWidget extends StatelessWidget {
       child: InkWell(
         splashColor: AppUtils.gradientRightBackgroundColor,
         borderRadius: BorderRadius.circular(20.0),
-        onTap: () {},
+        onTap: onTap,
         child: Container(
           height: 160.h,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.0)),

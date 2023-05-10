@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fAuth = FirebaseAuth.instance;
     return Scaffold(
       appBar: AppBar(
         title: const TitleAppBar(),
@@ -27,12 +29,15 @@ class HomePage extends StatelessWidget {
               const WeeklyReminderWidget(),
               const RowMainSpaceBetweenText(
                   left: "Today Workout Plan", right: 'Mon 26 Apr'),
-              const StartFitnessWidget(),
+              StartFitnessWidget(
+                onTap: () {},
+              ),
               SizedBox(height: 10.h),
               Text("Tips that might be usefull for you",
                   style: Theme.of(context).textTheme.headlineSmall),
               SizedBox(height: 10.h),
-              const CustomCardHomePage(
+              CustomCardHomePage(
+                  onPressed: () {},
                   image: AssetsUtil.eighteenPerson,
                   labelText: "Work out before age 18!"),
               SizedBox(height: 10.h),

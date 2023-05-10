@@ -38,7 +38,7 @@ class SuccessRegistrationPage extends StatelessWidget {
               CustomButtonWidget(
                 labelButton: 'Go To Home',
                 icon: Icons.home_outlined,
-                onPressed: () {},
+                onPressed: () => Navigator.pushReplacementNamed(context, '/'),
               )
             ],
           ),

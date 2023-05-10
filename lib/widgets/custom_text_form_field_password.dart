@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormFieldWidget extends StatelessWidget {
-  final String label;
+class CustomTextFormFieldPassword extends StatelessWidget {
   final TextEditingController textEditingController;
-  final IconData icon;
   final bool isPassword;
   final String? Function(String?)? validator;
+  final void Function()? onPressedPass;
   @override
-  const CustomTextFormFieldWidget(
-      {required this.label,
+  const CustomTextFormFieldPassword(
+      {this.onPressedPass,
       required this.validator,
       required this.textEditingController,
-      required this.icon,
       this.isPassword = false,
       super.key});
 
@@ -22,16 +20,18 @@ class CustomTextFormFieldWidget extends StatelessWidget {
         autocorrect: false,
         controller: textEditingController,
         enableSuggestions: false,
-        obscureText: isPassword == true ? true : false,
+        obscureText: isPassword == false ? false : true,
         decoration: InputDecoration(
             fillColor: Colors.grey.shade300,
             filled: true,
-            labelText: label,
-            suffixIcon: isPassword == true
-                ? const Icon(Icons.remove_red_eye_outlined)
-                : null,
+            labelText: "Password",
+            suffixIcon: IconButton(
+                onPressed: onPressedPass,
+                icon: Icon(isPassword == false
+                    ? Icons.visibility_off
+                    : Icons.visibility)),
             floatingLabelBehavior: FloatingLabelBehavior.never,
-            prefixIcon: Icon(icon),
+            prefixIcon: const Icon(Icons.lock_outline_rounded),
             border: const OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.all(Radius.circular(20.0)))));
