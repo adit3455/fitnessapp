@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
 
   final firebaseAuthCurrentUser =
       FirebaseAuth.instance.currentUser != null ? '/' : '/welcome';
+  final authDisplayName = "${FirebaseAuth.instance.currentUser?.displayName}";
 
   Future<void> signUp(
       {required String email,
@@ -43,23 +45,23 @@ class AuthRepository {
     }
   }
 
-//   Future<void> signInWithGoogle() async {
-//     try {
-//       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-//       final GoogleSignInAuthentication? googleAuth =
-//           await googleUser?.authentication;
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-//       final credential = GoogleAuthProvider.credential(
-//         accessToken: googleAuth?.accessToken,
-//         idToken: googleAuth?.idToken,
-//       );
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
 
-//       await FirebaseAuth.instance.signInWithCredential(credential);
-//     } catch (e) {
-//       throw Exception(e.toString());
-//     }
-// }
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 
   Future<void> signOut() async {
     try {

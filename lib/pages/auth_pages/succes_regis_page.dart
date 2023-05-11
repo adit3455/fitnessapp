@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/utils/export_utils.dart';
 import 'package:fitness_app/widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +23,17 @@ class SuccessRegistrationPage extends StatelessWidget {
                           image: AssetImage(AssetsUtil.manWomanPose),
                           fit: BoxFit.cover))),
               SizedBox(height: 20.h),
-              Text("Welcome urName!",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineLarge!
-                      .copyWith(fontWeight: FontWeight.bold)),
+              Container(
+                padding: const EdgeInsets.all(1.0),
+                width: 350.w,
+                child: Text(
+                    "Welcome ${FirebaseAuth.instance.currentUser?.displayName}!",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineLarge!
+                        .copyWith(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center),
+              ),
               SizedBox(height: 5.h),
               SizedBox(
                   width: 240.w,

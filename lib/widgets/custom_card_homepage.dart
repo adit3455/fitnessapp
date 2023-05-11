@@ -44,12 +44,8 @@ class CustomCardHomePage extends StatelessWidget {
                         iconData: Icons.info_outline_rounded),
                     SizedBox(height: 10.h),
                     Text(labelText,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600)),
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: Colors.white, fontWeight: FontWeight.w600)),
                   ],
                 ),
               ),

@@ -31,6 +31,7 @@ class AppRoutesConfig {
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/successRegis'),
             builder: (context) => const SuccessRegistrationPage());
+      //
 
       default:
         return MaterialPageRoute(builder: (context) => const ErrorPage());

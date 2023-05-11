@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   card_loading: ^0.3.0
+  cloud_firestore: ^4.6.0
   cupertino_icons: ^1.0.2
   equatable: ^2.0.5
   firebase_auth: ^4.5.0
@@ -19,6 +20,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   flutter_screenutil: ^5.7.0
   google_fonts: ^4.0.4
+  google_sign_in: ^6.1.0
   icons_plus: ^4.0.0
   onboarding: ^3.1.0
   path_provider: ^2.0.14

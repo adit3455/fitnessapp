@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +8,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fAuth = FirebaseAuth.instance;
     return Scaffold(
       appBar: AppBar(
         title: const TitleAppBar(),

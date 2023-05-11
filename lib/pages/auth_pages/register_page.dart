@@ -31,7 +31,7 @@ class RegisterPage extends StatelessWidget {
           if (state is Loading) {
             return Column(
                 children: List.generate(
-                    4,
+                    6,
                     (index) => const CardLoading(
                           height: 60,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -147,21 +147,13 @@ class RegisterPage extends StatelessWidget {
                             }),
                         const CustomDividerWithText(text: "Or"),
                         Container(
-                            width: 200.w,
-                            padding: EdgeInsets.all(10.h),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  InkWell(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                      onTap: () {},
-                                      child: Logo(Logos.google)),
-                                  InkWell(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                      onTap: () {},
-                                      child: Logo(Logos.facebook_f))
-                                ])),
+                            margin: EdgeInsets.all(10.h),
+                            child: InkWell(
+                                borderRadius: BorderRadius.circular(20.0),
+                                onTap: () => context
+                                    .read<AuthBloc>()
+                                    .add(GoogleSignInRequested()),
+                                child: Logo(Logos.google))),
                         Padding(
                           padding: EdgeInsets.all(10.h),
                           child: RichText(
