@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import '../utils/export_utils.dart';
 
 class TitleAppBar extends StatelessWidget {
+  final String leftText;
+  final String rightText;
   const TitleAppBar({
+    required this.leftText,
+    required this.rightText,
     super.key,
   });
 
@@ -17,12 +21,12 @@ class TitleAppBar extends StatelessWidget {
                 .textTheme
                 .displaySmall!
                 .copyWith(fontWeight: FontWeight.bold),
-            text: "Fitness",
+            text: leftText,
             children: [
               TextSpan(
                   style: TextStyle(
                       color: AppUtils.appbarBackgroundColor, fontSize: 30.h),
-                  text: ' App')
+                  text: ' $rightText')
             ]));
   }
 }

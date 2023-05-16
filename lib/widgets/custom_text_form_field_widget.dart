@@ -9,7 +9,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   @override
   const CustomTextFormFieldWidget(
       {required this.label,
-      required this.validator,
+      this.validator,
       required this.textEditingController,
       required this.icon,
       this.isPassword = false,

@@ -1,5 +1,8 @@
+import 'package:fitness_app/models/export_model.dart';
 import 'package:fitness_app/pages/auth_pages/register_page.dart';
 import 'package:fitness_app/pages/auth_pages/succes_regis_page.dart';
+import 'package:fitness_app/pages/nutritions_page.dart/detail_nutrition_page.dart';
+import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/export_pages.dart';
@@ -11,6 +14,10 @@ class AppRoutesConfig {
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/'),
             builder: (context) => const HomePage());
+      case '/bottom':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/bottom'),
+            builder: (context) => const BottomNavigationWidget());
       case '/welcome':
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/welcome'),
@@ -31,7 +38,33 @@ class AppRoutesConfig {
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/successRegis'),
             builder: (context) => const SuccessRegistrationPage());
-      //
+      case '/discover':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/discover'),
+            builder: (context) => const DiscoverPage());
+      case '/reports':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/reports'),
+            builder: (context) => const ReportsPage());
+      case '/profil':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/profil'),
+            builder: (context) => const ProfilePage());
+      case '/nutrition':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/nutrition'),
+            builder: (context) => const NutritionScreen());
+      case '/detailNutrition':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/detailNutrition'),
+            builder: (context) => DetailNutritionPage(
+                  foodModel: settings.arguments as FoodModel,
+                ));
+      case '/listNutrition':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/listNutrition'),
+            builder: (context) => ListNutritionPage(
+                foodModel: settings.arguments as List<FoodModel>));
 
       default:
         return MaterialPageRoute(builder: (context) => const ErrorPage());

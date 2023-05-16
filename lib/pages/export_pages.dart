@@ -3,3 +3,8 @@ export 'on_boarding_pages/on_boarding_page.dart';
 export 'auth_pages/login_page.dart';
 export 'error_page.dart';
 export 'main_pages/home_page.dart';
+export 'main_pages/discover_page.dart';
+export 'main_pages/reports_page.dart';
+export 'main_pages/profile_page.dart';
+export 'nutritions_page.dart/list_nutrition_page.dart';
+export 'nutritions_page.dart/nutrition_screen.dart';

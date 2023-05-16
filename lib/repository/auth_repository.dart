@@ -5,7 +5,7 @@ class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
 
   final firebaseAuthCurrentUser =
-      FirebaseAuth.instance.currentUser != null ? '/' : '/welcome';
+      FirebaseAuth.instance.currentUser != null ? '/bottom' : '/welcome';
   final authDisplayName = "${FirebaseAuth.instance.currentUser?.displayName}";
 
   Future<void> signUp(
