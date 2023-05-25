@@ -5,9 +5,11 @@ class CustomTextFormFieldPassword extends StatelessWidget {
   final bool isPassword;
   final String? Function(String?)? validator;
   final void Function()? onPressedPass;
+  final String? labelPassword;
   @override
   const CustomTextFormFieldPassword(
       {this.onPressedPass,
+      this.labelPassword,
       required this.validator,
       required this.textEditingController,
       this.isPassword = false,
@@ -24,7 +26,7 @@ class CustomTextFormFieldPassword extends StatelessWidget {
         decoration: InputDecoration(
             fillColor: Colors.grey.shade300,
             filled: true,
-            labelText: "Password",
+            labelText: labelPassword ?? "Password",
             suffixIcon: IconButton(
                 onPressed: onPressedPass,
                 icon: Icon(isPassword == false

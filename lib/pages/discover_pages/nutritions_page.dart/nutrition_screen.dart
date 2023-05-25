@@ -1,9 +1,8 @@
-import 'package:fitness_app/repository/firebase_service/cloud_firebase_service.dart';
+import 'package:fitness_app/repository/firebase_service/nutrition_firebase_service.dart';
 import 'package:fitness_app/utils/export_utils.dart';
 import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
-
-import '../../blocs/export_blocs.dart';
+import '../../../blocs/export_blocs.dart';
 
 class NutritionScreen extends StatelessWidget {
   const NutritionScreen({super.key});
@@ -17,9 +16,9 @@ class NutritionScreen extends StatelessWidget {
         title: const TitleAppBar(leftText: "Nutrition", rightText: "Screen"),
       ),
       body: BlocProvider(
-        create: (context) =>
-            FetchNutritionBloc(firebaseCloudService: FirebaseCloudService())
-              ..add(LoadNutrition()),
+        create: (context) => FetchNutritionBloc(
+            nutritionFirebaseService: NutritionFirebaseService())
+          ..add(LoadNutrition()),
         child: SingleChildScrollView(
           child: BlocConsumer<FetchNutritionBloc, FetchNutritionState>(
             listener: (context, state) {
@@ -40,10 +39,40 @@ class NutritionScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomTextFormFieldWidget(
-                          label: 'Search Foods!',
-                          textEditingController: searchC,
-                          icon: Icons.search),
+                      BlocProvider(
+                        create: (context) =>
+                            SearchFoodCubit(NutritionFirebaseService()),
+                        child: BlocConsumer<SearchFoodCubit, SearchFoodState>(
+                          listener: (context, state) {
+                            if (state is FoodSearched) {
+                              Navigator.pushNamed(context, '/listNutrition',
+                                  arguments: state.listFood);
+                            }
+                          },
+                          builder: (context, state) {
+                            if (state is FoodLoading) {
+                              return const LoadingWidget(count: 1);
+                            }
+                            if (state is FoodSearched) {
+                              return _searchFoodsWidget(searchC, context);
+                            }
+                            if (state is FoodUnsearched) {
+                              return _searchFoodsWidget(searchC, context);
+                            }
+                            if (state is FoodError) {
+                              return Column(
+                                children: [
+                                  _searchFoodsWidget(searchC, context),
+                                  Text(state.message),
+                                ],
+                              );
+                            } else {
+                              return const Text("Theres Something Wrong");
+                            }
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 10.0),
                       const CustomBoldTitle(title: "About Nutrition"),
                       Container(
                           margin: EdgeInsets.all(5.h),
@@ -112,6 +141,29 @@ class NutritionScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Row _searchFoodsWidget(TextEditingController searchC, BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+            width: 280.w,
+            child: CustomTextFormFieldWidget(
+                label: 'Search Foods!',
+                textEditingController: searchC,
+                icon: Icons.search)),
+        Expanded(
+            child: TextButton(
+                onPressed: () =>
+                    context.read<SearchFoodCubit>().searchFood(searchC.text),
+                style: TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 5.0.w)),
+                child: const Text("Search",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold)))),
+      ],
     );
   }
 }

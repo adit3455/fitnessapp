@@ -12,8 +12,7 @@ class NutritionModel {
       food = <FoodModel>[];
       json['food'].forEach((e) {
         food!.add(FoodModel.fromJson(e));
-      }
-);
+      });
     }
   }
 }

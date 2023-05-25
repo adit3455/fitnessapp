@@ -14,3 +14,5 @@ export 'nutrition_card_widget.dart';
 export 'custom_bold_title.dart';
 export 'nutrition_food_card_widget.dart';
 export 'loading_widget.dart';
+export 'more_foods_detail_widget.dart';
+export 'bullet_text.dart';

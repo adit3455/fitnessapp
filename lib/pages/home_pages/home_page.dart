@@ -1,4 +1,5 @@
-import 'package:fitness_app/repository/firebase_service/cloud_firebase_service.dart';
+import 'package:fitness_app/pages/discover_pages/workout_before_18.dart';
+import 'package:fitness_app/repository/firebase_service/bad_habits_firebase_service.dart';
 import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -36,32 +37,38 @@ class HomePage extends StatelessWidget {
               const RowMainSpaceBetweenText(
                   left: "Today Workout Plan", right: 'Mon 26 Apr'),
               StartFitnessWidget(
-                onTap: () {},
+                onTap: () {
+                  // PersistentNavBarNavigator.pushNewScreen(context,
+                  //     screen: const FitnessDetail(), withNavBar: false);
+                  BadHabitsFirebaseService().getData();
+                },
               ),
               SizedBox(height: 10.h),
               Text("Tips that might be usefull for you",
                   style: Theme.of(context).textTheme.headlineSmall),
               SizedBox(height: 10.h),
               CustomCardHomePage(
-                  onPressed: () {
-                    FirebaseCloudService().getNutritionData();
-                  },
+                  onPressed: () => PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: const WorkOutBeforeEighteenPage(),
+                      withNavBar: false),
                   image: AssetsUtil.eighteenPerson,
                   labelText: "Work out before age 18!"),
               SizedBox(height: 10.h),
               CustomCardHomePage(
-                  onPressed: () {
-                    PersistentNavBarNavigator.pushNewScreen(
+                  onPressed: () => PersistentNavBarNavigator.pushNewScreen(
                       context,
                       screen: const NutritionScreen(),
-                      withNavBar: false, // OPTIONAL VALUE. True by default.
-                    );
-                  },
+                      withNavBar: false),
                   image: AssetsUtil.nutritionFood,
                   labelText: "Sugestion the best food for You!"),
               SizedBox(height: 10.h),
-              const CustomCardHomePage(
+              CustomCardHomePage(
                   image: AssetsUtil.stopSmoking,
+                  onPressed: () => PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: const BadHabbitsPage(),
+                      withNavBar: false),
                   labelText: "Stay away from bad habits!"),
               SizedBox(height: 10.h),
             ],

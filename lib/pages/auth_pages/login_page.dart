@@ -33,10 +33,9 @@ class LoginPage extends StatelessWidget {
                 children: List.generate(
                     6,
                     (index) => const CardLoading(
-                          height: 60,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                        )));
+                        height: 60,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        margin: EdgeInsets.symmetric(vertical: 5))));
           }
           if (state is UnAuthenticated) {
             return SingleChildScrollView(
@@ -77,7 +76,7 @@ class LoginPage extends StatelessWidget {
                                 if (value!.isEmpty ||
                                     !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
                                         .hasMatch(value)) {
-                                  return 'Input Correct Password. Ex: "Hifromapp#1"';
+                                  return 'Passwords should contain three of the four character types: Uppercase letters: A-Z. Lowercase letters: a-z. Numbers: 0-9.';
                                 }
                                 return null;
                               },

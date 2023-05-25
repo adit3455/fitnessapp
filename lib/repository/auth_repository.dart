@@ -1,23 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitness_app/repository/firebase_auth/base_firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthRepository {
-  final _firebaseAuth = FirebaseAuth.instance;
-
+class AuthRepository extends BaseAuthRepository {
   final firebaseAuthCurrentUser =
       FirebaseAuth.instance.currentUser != null ? '/bottom' : '/welcome';
   final authDisplayName = "${FirebaseAuth.instance.currentUser?.displayName}";
 
+  @override
   Future<void> signUp(
       {required String email,
       required String password,
       required String firstName,
       required String lastName}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      await _firebaseAuth.currentUser
-          ?.updateDisplayName("$firstName $lastName");
+      await firebaseAuth.currentUser?.updateDisplayName("$firstName $lastName");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw Exception('The password provided is too weak.');
@@ -29,12 +28,13 @@ class AuthRepository {
     }
   }
 
+  @override
   Future<void> signIn({
     required String email,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -45,6 +45,7 @@ class AuthRepository {
     }
   }
 
+  @override
   Future<void> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -63,11 +64,30 @@ class AuthRepository {
     }
   }
 
+  @override
+  Future<void> deleteUser() async {
+    try {
+      await firebaseAuth.currentUser?.delete();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
   Future<void> signOut() async {
     try {
-      await _firebaseAuth.signOut();
+      await firebaseAuth.signOut();
     } catch (e) {
       throw Exception(e);
+    }
+  }
+
+  @override
+  Future<void> updateDisplayName({required String name}) async {
+    try {
+      await firebaseAuth.currentUser?.updateDisplayName(name);
+    } catch (e) {
+      throw Exception(e.toString());
     }
   }
 }

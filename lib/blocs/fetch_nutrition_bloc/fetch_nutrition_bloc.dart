@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:fitness_app/models/export_model.dart';
-import 'package:fitness_app/repository/firebase_service/cloud_firebase_service.dart';
+import 'package:fitness_app/repository/firebase_service/nutrition_firebase_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -10,17 +10,18 @@ part 'fetch_nutrition_state.dart';
 
 class FetchNutritionBloc
     extends Bloc<FetchNutritionEvent, FetchNutritionState> {
-  final FirebaseCloudService _firebaseCloudService;
+  final NutritionFirebaseService _nutritionFirebaseService;
   StreamSubscription? _nutritionSubscription;
 
-  FetchNutritionBloc({required FirebaseCloudService firebaseCloudService})
-      : _firebaseCloudService = firebaseCloudService,
+  FetchNutritionBloc(
+      {required NutritionFirebaseService nutritionFirebaseService})
+      : _nutritionFirebaseService = nutritionFirebaseService,
         super(NutritionLoading()) {
     on<LoadNutrition>((event, emit) {
       try {
         _nutritionSubscription?.cancel();
-        _nutritionSubscription = _firebaseCloudService
-            .getNutritionData()
+        _nutritionSubscription = _nutritionFirebaseService
+            .getData()
             .asStream()
             .listen((nutrition) => nutrition.fold(
                 (l) => add(UpdateNutrition(l)),

@@ -41,10 +41,35 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(UnAuthenticated());
       }
     });
+    on<DeleteUser>((event, emit) async {
+      emit(Loading());
+      try {
+        await _authRepository.deleteUser();
+        emit(UnAuthenticated());
+      } catch (e) {
+        emit(AuthError(e.toString()));
+      }
+    });
+    on<UpdateDisplayName>((event, emit) async {
+      try {
+        if (_authRepository.authDisplayName == event.name) {
+          emit(const AuthError(
+              "Your name is Same as Before. you must change your name!"));
+        } else if (_authRepository.authDisplayName != event.name) {
+          _authRepository.updateDisplayName(name: event.name);
+        }
+      } catch (e) {
+        emit(AuthError(e.toString()));
+      }
+    });
     on<SignOutRequested>((event, emit) async {
       emit(Loading());
-      await _authRepository.signOut();
-      emit(UnAuthenticated());
+      try {
+        await _authRepository.signOut();
+        emit(UnAuthenticated());
+      } catch (e) {
+        emit(AuthError(e.toString()));
+      }
     });
   }
 }

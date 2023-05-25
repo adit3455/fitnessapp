@@ -46,7 +46,7 @@ class SuccessRegistrationPage extends StatelessWidget {
                 labelButton: 'Go To Home',
                 icon: Icons.home_outlined,
                 onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                    context, '/', (route) => false),
+                    context, '/bottom', (route) => false),
               )
             ],
           ),

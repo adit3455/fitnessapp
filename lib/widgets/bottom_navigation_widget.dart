@@ -13,22 +13,11 @@ class BottomNavigationWidget extends StatelessWidget {
       body: PersistentTabView(
         context,
         controller: PersistentTabController(initialIndex: 0),
-        screens: const [
-          HomePage(),
-          DiscoverPage(),
-          ReportsPage(),
-          ProfilePage()
-        ],
+        screens: const [HomePage(), ReportsPage(), ProfilePage()],
         items: [
           PersistentBottomNavBarItem(
             icon: const Icon(Icons.home),
             title: ("Home"),
-            activeColorPrimary: CupertinoColors.activeBlue,
-            inactiveColorPrimary: AppUtils.appbarBackgroundColor,
-          ),
-          PersistentBottomNavBarItem(
-            icon: const Icon(Icons.apps_rounded),
-            title: ("Discover"),
             activeColorPrimary: CupertinoColors.activeBlue,
             inactiveColorPrimary: AppUtils.appbarBackgroundColor,
           ),
