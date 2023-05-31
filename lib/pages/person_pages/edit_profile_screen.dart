@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/pages/export_pages.dart';
-import 'package:fitness_app/repository/firebase_storage/firebase_storage_config.dart';
 import 'package:fitness_app/utils/export_utils.dart';
 import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../blocs/export_blocs.dart';
+import '../../repository/firebase_storage/firebase_storage_config.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -55,13 +55,7 @@ class EditProfileScreen extends StatelessWidget {
                                         child: IconButton(
                                             onPressed: () async {
                                               await FirebaseStorageConfig()
-                                                  .pickImage();
-                                              Navigator.pop(context);
-                                              PersistentNavBarNavigator
-                                                  .pushNewScreen(context,
-                                                      screen:
-                                                          const EditProfileScreen(),
-                                                      withNavBar: false);
+                                                  .pickImage(context);
                                             },
                                             icon: const Icon(Icons.camera))))
                               ])),
@@ -207,12 +201,14 @@ class EditProfileScreen extends StatelessWidget {
                                       onPressed: () async {
                                         await fAuth.currentUser
                                             ?.sendEmailVerification();
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar(
-                                          content: Text(
-                                              "an Verification Email has been Send to your Email. Please Check your Email."),
-                                          duration: Duration(seconds: 2),
-                                        ));
+                                        if (context.mounted) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                                  content: Text(
+                                                      "an Verification Email has been Send to your Email. Please Check your Email."),
+                                                  duration:
+                                                      Duration(seconds: 2)));
+                                        }
                                       },
                                       icon: const Icon(Icons.cancel_outlined,
                                           color: Colors.red))

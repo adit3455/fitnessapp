@@ -27,10 +27,10 @@ class MoreFoodsDetailWidget extends StatelessWidget {
                 decoration:
                     const BoxDecoration(color: AppUtils.appbarBackgroundColor),
                 child: Image.network(listFood[index].image,
-                    width: 240.w, height: 170.h, fit: BoxFit.cover)),
+                    width: 240.w, height: 120.h, fit: BoxFit.cover)),
             Positioned(
                 // bottom: 8.h,
-                top: 180.h,
+                top: 140.h,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

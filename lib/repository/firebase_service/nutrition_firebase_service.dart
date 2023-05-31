@@ -22,7 +22,6 @@ class NutritionFirebaseService extends BaseCloudFirebaseService {
     }
   }
 
-  @override
   Future<Either<List<FoodModel>, FailureModel>> searchData(
       {required String text}) async {
     try {

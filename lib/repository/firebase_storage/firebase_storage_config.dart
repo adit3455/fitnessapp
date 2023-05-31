@@ -1,11 +1,15 @@
 import 'dart:io';
 
 import 'package:fitness_app/repository/firebase_storage/base_firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import '../../pages/export_pages.dart';
 
 class FirebaseStorageConfig extends BaseFirebaseStorageConfig {
   @override
-  Future<void> pickImage() async {
+  Future<void> pickImage(BuildContext context) async {
     try {
       final image = await imagePicker.pickImage(source: ImageSource.gallery);
 
@@ -23,6 +27,12 @@ class FirebaseStorageConfig extends BaseFirebaseStorageConfig {
       await auth.currentUser?.updatePhotoURL(url);
     } catch (e) {
       throw Exception(e.toString());
+    }
+
+    if (context.mounted) {
+      Navigator.pop(context);
+      PersistentNavBarNavigator.pushNewScreen(context,
+          screen: const EditProfileScreen(), withNavBar: false);
     }
   }
 }

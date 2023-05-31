@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 abstract class BaseFirebaseStorageConfig {
@@ -7,5 +8,5 @@ abstract class BaseFirebaseStorageConfig {
   FirebaseAuth auth = FirebaseAuth.instance;
   ImagePicker imagePicker = ImagePicker();
 
-  Future<void> pickImage();
+  Future<void> pickImage(BuildContext context);
 }

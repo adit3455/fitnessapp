@@ -120,7 +120,7 @@ class DetailNutritionPage extends StatelessWidget {
                                     .toList();
 
                                 return SizedBox(
-                                    height: 250.h,
+                                    height: 200.h,
                                     child: ListView.builder(
                                         itemCount: foodType.length,
                                         scrollDirection: Axis.horizontal,

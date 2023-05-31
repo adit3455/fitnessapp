@@ -11,3 +11,4 @@ export 'discover_pages/nutritions_page.dart/nutrition_screen.dart';
 export 'discover_pages/bad_habbits_page.dart';
 export 'home_pages/fitness_pages/fitness_detail.dart';
 export 'person_pages/edit_profile_screen.dart';
+export 'exercises_pages/all_exercises_page.dart';

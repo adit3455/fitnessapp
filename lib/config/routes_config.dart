@@ -3,6 +3,7 @@ import 'package:fitness_app/pages/auth_pages/register_page.dart';
 import 'package:fitness_app/pages/auth_pages/succes_regis_page.dart';
 import 'package:fitness_app/pages/discover_pages/workout_before_18.dart';
 import 'package:fitness_app/pages/discover_pages/nutritions_page.dart/detail_nutrition_page.dart';
+import 'package:fitness_app/pages/exercises_pages/exercise_detail_page.dart';
 import 'package:fitness_app/pages/person_pages/change_password.dart';
 import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
@@ -78,6 +79,17 @@ class AppRoutesConfig {
             settings: const RouteSettings(name: '/listNutrition'),
             builder: (context) => ListNutritionPage(
                 foodModel: settings.arguments as List<FoodModel>));
+      case '/allExercise':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/allExercise'),
+            builder: (context) => const AllExercisesPage());
+      case '/exerciseDetail':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/exerciseDetail'),
+            builder: (context) => ExerciseDetailPage(
+                  exercise: settings.arguments as ExerciseModel,
+                  index: settings.arguments as int,
+                ));
 
       default:
         return MaterialPageRoute(builder: (context) => const ErrorPage());

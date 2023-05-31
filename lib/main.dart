@@ -11,22 +11,20 @@ void main() async {
   await Firebase.initializeApp();
 
   runApp(ScreenUtilInit(
-    designSize: const Size(360, 690),
-    minTextAdapt: true,
-    splitScreenMode: true,
-    builder: (context, child) {
-      return MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => AuthBloc(AuthRepository())),
-          BlocProvider(create: (context) => ObscureFormCubit())
-        ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: AppUtils.themeData,
-          onGenerateRoute: AppRoutesConfig.onGenerateRoute,
-          initialRoute: AuthRepository().firebaseAuthCurrentUser,
-        ),
-      );
-    },
-  ));
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => AuthBloc(AuthRepository())),
+              BlocProvider(create: (context) => ObscureFormCubit())
+            ],
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: AppUtils.themeData,
+              onGenerateRoute: AppRoutesConfig.onGenerateRoute,
+              initialRoute: AuthRepository().firebaseAuthCurrentUser,
+            ));
+      }));
 }
