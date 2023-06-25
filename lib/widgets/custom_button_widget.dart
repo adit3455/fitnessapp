@@ -5,8 +5,10 @@ class CustomButtonWidget extends StatelessWidget {
   final String labelButton;
   final IconData icon;
   final void Function()? onPressed;
+  final double? width;
   const CustomButtonWidget({
     required this.labelButton,
+    this.width,
     required this.icon,
     required this.onPressed,
     super.key,
@@ -15,7 +17,7 @@ class CustomButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 280.w,
+      width: width ?? 280.w,
       child: ElevatedButton(
         onPressed: onPressed,
         child: Row(

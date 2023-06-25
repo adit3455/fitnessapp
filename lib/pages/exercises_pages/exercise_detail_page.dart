@@ -105,10 +105,9 @@ class ExerciseDetailPage extends StatelessWidget {
                                 return CardLoading(height: 200.h, width: 200.w);
                               }
                               if (state is ExerciseLoaded) {
-                                final stateList = state.listExercise
-                                    .where((element) =>
-                                        element.type == exercise.type)
-                                    .toList();
+                                List<ExerciseModel> stateList = exerciseConfig
+                                    .listFiltered(state.listExercise, exercise);
+
                                 return ListView.builder(
                                     itemCount: stateList.length,
                                     scrollDirection: Axis.horizontal,
@@ -152,29 +151,28 @@ class ExerciseDetailPage extends StatelessWidget {
                                                         children: [
                                                           Container(
                                                               padding:
-                                                                  const EdgeInsets
-                                                                      .all(1),
+                                                                  const EdgeInsets.all(
+                                                                      1),
                                                               width: 240.w,
                                                               child: Text(
-                                                                stateList[index]
-                                                                    .name,
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .headlineSmall!
-                                                                    .copyWith(
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                              )),
+                                                                  stateList[index]
+                                                                      .name,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .headlineSmall!
+                                                                      .copyWith(
+                                                                          fontWeight: FontWeight
+                                                                              .bold),
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis)),
                                                           const SizedBox(
                                                               height: 5),
                                                           SizedBox(
                                                               width: 240.w,
                                                               child: Text(
-                                                                  "1 Minute : ${stateList[index].calories.toInt()} Calories | Dificulities : ${ExerciseConfig().capitalize(stateList[index].dificulities)}",
+                                                                  "1 Minute : ${stateList[index].calories.toInt()} Calories | Dificulities : ${exerciseConfig.capitalize(stateList[index].dificulities)}",
                                                                   textAlign:
                                                                       TextAlign
                                                                           .start,

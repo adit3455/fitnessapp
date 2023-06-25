@@ -83,12 +83,10 @@ class LoginPage extends StatelessWidget {
                               textEditingController: passController,
                               isPassword:
                                   (state as ObscureFormInitial).isPassword,
-                              onPressedPass: () {
-                                context
-                                    .read<ObscureFormCubit>()
-                                    .onChangingObscure(
-                                        isPassword: !(state).isPassword);
-                              });
+                              onPressedPass: () => context
+                                  .read<ObscureFormCubit>()
+                                  .onChangingObscure(
+                                      isPassword: !(state).isPassword));
                         }),
                         SizedBox(height: 10.h),
                         TextButton(

@@ -118,6 +118,9 @@ class DetailNutritionPage extends StatelessWidget {
                                     .where((element) =>
                                         element.type == foodModel.type)
                                     .toList();
+                                foodType.removeWhere((element) =>
+                                    element.name == foodModel.name);
+                                foodType.shuffle();
 
                                 return SizedBox(
                                     height: 200.h,

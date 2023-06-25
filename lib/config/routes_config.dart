@@ -1,10 +1,5 @@
 import 'package:fitness_app/models/export_model.dart';
-import 'package:fitness_app/pages/auth_pages/register_page.dart';
-import 'package:fitness_app/pages/auth_pages/succes_regis_page.dart';
-import 'package:fitness_app/pages/discover_pages/workout_before_18.dart';
-import 'package:fitness_app/pages/discover_pages/nutritions_page.dart/detail_nutrition_page.dart';
-import 'package:fitness_app/pages/exercises_pages/exercise_detail_page.dart';
-import 'package:fitness_app/pages/person_pages/change_password.dart';
+import 'package:fitness_app/pages/exercises_pages/start_exercise_page.dart';
 import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -79,10 +74,32 @@ class AppRoutesConfig {
             settings: const RouteSettings(name: '/listNutrition'),
             builder: (context) => ListNutritionPage(
                 foodModel: settings.arguments as List<FoodModel>));
-      case '/allExercise':
+      // case '/doneExercise':
+      //   return MaterialPageRoute(
+      //       settings: const RouteSettings(name: '/doneExercise'),
+      //       builder: (context) => DoneExerciseScreen(
+      //             accomodateExercise: settings.arguments as List<ExerciseModel>,
+      //           ));
+      case '/doneExercise':
         return MaterialPageRoute(
-            settings: const RouteSettings(name: '/allExercise'),
-            builder: (context) => const AllExercisesPage());
+            settings: const RouteSettings(name: '/doneExercise'),
+            builder: (context) => const DoneExerciseScreen());
+
+      case '/listExercise':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/listExercise'),
+            builder: (context) => ListExercisePage(
+                exercise: settings.arguments as List<ExerciseModel>));
+      case '/startExercise':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/startExercise'),
+            builder: (context) => StartExercisePage(
+                exercise: settings.arguments as List<ExerciseModel>));
+      case '/exerciseTracker':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/exerciseTracker'),
+            builder: (context) => const ExerciseTrackerPage());
+
       case '/exerciseDetail':
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/exerciseDetail'),

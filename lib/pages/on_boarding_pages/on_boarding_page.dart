@@ -38,7 +38,7 @@ class OnBoardingPage extends StatelessWidget {
           index = pageIndex;
         },
         pages: onBoardingPageList,
-        startPageIndex: 0,
+        startPageIndex: index,
         footerBuilder: (context, netDragDistance, pagesLength, setIndex) {
           return DecoratedBox(
             decoration: BoxDecoration(
@@ -56,18 +56,15 @@ class OnBoardingPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomIndicator(
-                      shouldPaint: true,
-                      netDragPercent: netDragDistance,
-                      pagesLength: pagesLength,
-                      indicator: Indicator(
-                        indicatorDesign: IndicatorDesign.line(
-                          lineDesign: LineDesign(
-                            lineSpacer: 24,
-                            lineType: DesignType.line_nonuniform,
-                          ),
-                        ),
-                      ),
-                    ),
+                        shouldPaint: true,
+                        netDragPercent: netDragDistance,
+                        pagesLength: pagesLength,
+                        indicator: Indicator(
+                            indicatorDesign: IndicatorDesign.line(
+                                lineDesign: LineDesign(
+                          lineSpacer: 24,
+                          lineType: DesignType.line_nonuniform,
+                        )))),
                     index == pagesLength - 1
                         ? TextButton(
                             onPressed: () =>

@@ -272,7 +272,7 @@ class EditProfileScreen extends StatelessWidget {
         onPressed: onPressed,
         style: TextButton.styleFrom(
             backgroundColor: AppUtils.appbarBackgroundColor,
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         child: Text(labelButton,

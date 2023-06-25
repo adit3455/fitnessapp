@@ -1,6 +1,6 @@
-import 'package:fitness_app/pages/discover_pages/workout_before_18.dart';
 import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../widgets/export_widgets.dart';
@@ -33,11 +33,12 @@ class HomePage extends StatelessWidget {
                   trailing: CustomContainerButton(
                     iconData: Icons.add,
                   )),
-              const RowMainSpaceBetweenText(
-                  left: "Today Workout Plan", right: 'Mon 26 Apr'),
+              RowMainSpaceBetweenText(
+                  left: "Today Workout Plan",
+                  right: DateFormat.yMMMMEEEEd().format(DateTime.now())),
               StartFitnessWidget(
                   onTap: () => PersistentNavBarNavigator.pushNewScreen(context,
-                      screen: const AllExercisesPage(), withNavBar: false)),
+                      screen: const ExerciseTrackerPage(), withNavBar: false)),
               SizedBox(height: 10.h),
               Text("Tips that might be usefull for you",
                   style: Theme.of(context).textTheme.headlineSmall),
@@ -71,9 +72,5 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Map<String, dynamic> exerciseToMap(exercise) {
-    return {"listExercise": exercise};
   }
 }

@@ -6,3 +6,4 @@ export 'search_food_cubit/search_food_cubit.dart';
 export 'fetch_work_out_before_eighteen_bloc/fetch_work_out_before_eighteen_bloc.dart';
 export 'fetch_bad_habit_bloc/fetch_bad_habit_bloc.dart';
 export 'fetch_exercise_bloc/fetch_exercise_bloc.dart';
+export 'start_exercise_bloc/start_exercise_bloc.dart';

@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fitness_app/config/exercise_config.dart';
 import 'package:fitness_app/config/routes_config.dart';
 import 'package:fitness_app/repository/auth_repository.dart';
 import 'package:fitness_app/utils/app_utils.dart';
@@ -18,13 +19,17 @@ void main() async {
         return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => AuthBloc(AuthRepository())),
-              BlocProvider(create: (context) => ObscureFormCubit())
+              BlocProvider(create: (context) => ObscureFormCubit()),
+              BlocProvider(
+                  create: (context) =>
+                      StartExerciseBloc(exerciseConfig: ExerciseConfig()))
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: AppUtils.themeData,
               onGenerateRoute: AppRoutesConfig.onGenerateRoute,
               initialRoute: AuthRepository().firebaseAuthCurrentUser,
+              // initialRoute: '/doneExercise',
             ));
       }));
 }
