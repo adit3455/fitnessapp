@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitness_app/blocs/export_blocs.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../utils/export_utils.dart';
+import '../../blocs/obscure_form_cubit/obscure_form_cubit.dart';
+import '../../utils/app_utils.dart';
+import '../../widgets/custom_text_form_field_password.dart';
+import '../../widgets/title_app_bar.dart';
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({super.key});

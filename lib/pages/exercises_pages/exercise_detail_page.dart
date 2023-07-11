@@ -1,11 +1,16 @@
+import 'package:card_loading/card_loading.dart';
+import 'package:fitness_app/extension/extension.dart';
 import 'package:fitness_app/models/exercises_model.dart';
-import 'package:fitness_app/repository/export_repo.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../blocs/export_blocs.dart';
-import '../../config/export_config.dart';
-import '../../utils/export_utils.dart';
+import '../../blocs/fetch_exercise_bloc/fetch_exercise_bloc.dart';
+import '../../config/exercise_config.dart';
+import '../../repository/firebase_exercise_module.dart/firebase_exercise_module.dart';
+import '../../utils/app_utils.dart';
+import '../../widgets/custom_bold_title.dart';
+import '../../widgets/title_app_bar.dart';
 
 class ExerciseDetailPage extends StatelessWidget {
   final ExerciseModel exercise;
@@ -74,7 +79,7 @@ class ExerciseDetailPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                        "Dificulities : ${exerciseConfig.capitalize(exercise.dificulities)} | Calories Burn in 1 Minutes : ${exercise.calories.toInt()} Calories | ${exerciseConfig.exerciseTypeChanger(exercise.type)}"),
+                        "Dificulities : ${exercise.dificulities.capitalize()} | Calories Burn in 1 Minutes : ${exercise.calories.toInt()} Calories | ${exerciseConfig.exerciseTypeChanger(exercise.type)}"),
                     const SizedBox(height: 5.0),
                     Container(
                         margin: EdgeInsets.all(5.h),
@@ -172,7 +177,7 @@ class ExerciseDetailPage extends StatelessWidget {
                                                           SizedBox(
                                                               width: 240.w,
                                                               child: Text(
-                                                                  "1 Minute : ${stateList[index].calories.toInt()} Calories | Dificulities : ${exerciseConfig.capitalize(stateList[index].dificulities)}",
+                                                                  "1 Minute : ${stateList[index].calories.toInt()} Calories | Dificulities : ${stateList[index].dificulities.capitalize()}",
                                                                   textAlign:
                                                                       TextAlign
                                                                           .start,

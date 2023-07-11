@@ -1,8 +1,9 @@
-import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding/onboarding.dart';
 
-import '../../widgets/export_widgets.dart';
+import '../../utils/app_utils.dart';
+import '../../utils/assets_util.dart';
+import '../../widgets/on_boarding_widget.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});

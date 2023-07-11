@@ -1,9 +1,15 @@
-import 'package:fitness_app/blocs/export_blocs.dart';
 import 'package:fitness_app/repository/firebase_service/workout_before_18_service.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../utils/export_utils.dart';
+import '../../blocs/fetch_work_out_before_eighteen_bloc/fetch_work_out_before_eighteen_bloc.dart';
+import '../../utils/app_utils.dart';
+import '../../utils/assets_util.dart';
+import '../../widgets/bullet_text.dart';
+import '../../widgets/custom_bold_title.dart';
+import '../../widgets/loading_widget.dart';
+import '../../widgets/title_app_bar.dart';
 
 class WorkOutBeforeEighteenPage extends StatelessWidget {
   const WorkOutBeforeEighteenPage({super.key});

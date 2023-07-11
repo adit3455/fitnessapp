@@ -1,6 +1,6 @@
-import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppUtils {
@@ -15,7 +15,6 @@ class AppUtils {
   static const Color scaffoldBackgroundColor = Color.fromARGB(7, 38, 39, 40);
 
   static ThemeData themeData = ThemeData(
-    
       useMaterial3: true,
       fontFamily: GoogleFonts.robotoCondensed().fontFamily,
       elevatedButtonTheme: ElevatedButtonThemeData(

@@ -1,11 +1,14 @@
-import 'package:fitness_app/utils/export_utils.dart';
 import 'package:fitness_app/widgets/custom_bold_title.dart';
 import 'package:fitness_app/widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-import '../../blocs/export_blocs.dart';
-import '../../config/export_config.dart';
+import '../../blocs/start_exercise_bloc/start_exercise_bloc.dart';
+import '../../config/exercise_config.dart';
+import '../../utils/app_utils.dart';
+import '../../utils/assets_util.dart';
 
 class DoneExerciseScreen extends StatelessWidget {
   const DoneExerciseScreen({super.key});
@@ -163,8 +166,14 @@ class DoneExerciseScreen extends StatelessWidget {
                                   onPressed: () async {
                                     context.read<StartExerciseBloc>().add(InitState(
                                         date: dateTimeNow,
-                                        duration:
-                                            "${minutes(getDuration())}:${seconds(getDuration())}",
+                                        duration: state.accomodateExercise.fold(
+                                            0,
+                                            (previousValue, element) =>
+                                                previousValue +
+                                                ExerciseConfig()
+                                                    .durationConverter(
+                                                        element.duration!)
+                                                    .inSeconds),
                                         totalCalories: kcal.toDouble(),
                                         accommodateExercise:
                                             state.accomodateExercise));

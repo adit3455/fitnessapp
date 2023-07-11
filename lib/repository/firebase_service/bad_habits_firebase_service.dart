@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:fitness_app/models/bad_habits_model.dart';
 import 'package:fitness_app/models/export_model.dart';
-import 'package:fitness_app/repository/export_repo.dart';
+
+import 'base_cloud_firebase.dart';
 
 class BadHabitsFirebaseService extends BaseCloudFirebaseService {
   @override

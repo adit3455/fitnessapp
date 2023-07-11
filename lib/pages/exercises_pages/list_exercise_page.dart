@@ -1,10 +1,11 @@
 import 'package:fitness_app/config/exercise_config.dart';
+import 'package:fitness_app/extension/extension.dart';
 import 'package:fitness_app/models/exercises_model.dart';
-import 'package:fitness_app/pages/export_pages.dart';
-import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../widgets/export_widgets.dart';
+import '../../widgets/title_app_bar.dart';
+import 'exercise_detail_page.dart';
 
 class ListExercisePage extends StatelessWidget {
   final List<ExerciseModel> exercise;
@@ -44,13 +45,14 @@ class ListExercisePage extends StatelessWidget {
                                 index: index, exercise: exercise[index]),
                           )),
                       leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Image.network(exercise[index].image,
-                            fit: BoxFit.fitWidth, height: 130.h, width: 100.w),
-                      ),
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Image.network(exercise[index].image,
+                              fit: BoxFit.fitWidth,
+                              height: 130.h,
+                              width: 100.w)),
                       title: Text(exercise[index].name),
                       subtitle: Text(
-                          "1 Minute : ${exercise[index].calories.toInt()} Calories | Dificulities : ${ExerciseConfig().capitalize(exercise[index].dificulities)}"),
+                          "1 Minute : ${exercise[index].calories.toInt()} Calories | Dificulities : ${exercise[index].dificulities.capitalize()}"),
                     );
                   },
                   separatorBuilder: (context, index) {

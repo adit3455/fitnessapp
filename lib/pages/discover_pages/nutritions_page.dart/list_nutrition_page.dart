@@ -1,6 +1,8 @@
 import 'package:fitness_app/models/export_model.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
+
+import '../../../widgets/nutrition_food_card_widget.dart';
+import '../../../widgets/title_app_bar.dart';
 
 class ListNutritionPage extends StatelessWidget {
   final List<FoodModel> foodModel;

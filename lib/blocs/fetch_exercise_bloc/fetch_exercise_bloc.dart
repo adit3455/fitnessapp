@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:fitness_app/models/export_model.dart';
-import 'package:fitness_app/repository/export_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../repository/firebase_exercise_module.dart/firebase_exercise_module.dart';
 
 part 'fetch_exercise_event.dart';
 part 'fetch_exercise_state.dart';

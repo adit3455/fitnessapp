@@ -72,13 +72,6 @@ void main() async {
 
   //  12. broadcast or listen to 2 stream. await nonBroadCastExample();
   // await broadCastExample();
-
-  List<String> personName = ['Adit', "Prasetia", "Putra"];
-  List<int> countingNumbers = [1231273, 2132141, 51334, 1412321];
-  countingNumbers.sort();
-  for (var i = 0; i < personName.length; i++) {
-    // print(personName[i]);
-  }
 }
 
 // List<int> oddOnesOut(List<int> nums) {

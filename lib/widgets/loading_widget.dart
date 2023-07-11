@@ -1,6 +1,5 @@
+import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
-
-import '../utils/export_utils.dart';
 
 class LoadingWidget extends StatelessWidget {
   final int count;

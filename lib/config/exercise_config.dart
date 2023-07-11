@@ -12,8 +12,6 @@ class ExerciseConfig {
     }
   }
 
-  String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
-
   List<ExerciseModel> listFiltered(
       List<ExerciseModel> list, ExerciseModel exercise) {
     final filteredType =
@@ -62,10 +60,5 @@ class ExerciseConfig {
         (previousValue, element) =>
             previousValue + subStringToInt(element.duration.toString()));
     return Duration(seconds: seconds).inMinutes;
-  }
-
-  Stream<int> tick({required int ticks}) {
-    return Stream.periodic(const Duration(seconds: 1), (x) => ticks - x - 1)
-        .take(ticks);
   }
 }

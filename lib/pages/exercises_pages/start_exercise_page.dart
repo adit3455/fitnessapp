@@ -1,11 +1,15 @@
 import 'package:fitness_app/models/exercises_model.dart';
 import 'package:fitness_app/pages/exercises_pages/exercise_detail_page.dart';
 import 'package:fitness_app/pages/exercises_pages/on_exercise_page.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
-import '../../blocs/export_blocs.dart';
-import '../../config/export_config.dart';
-import '../../utils/export_utils.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../blocs/start_exercise_bloc/start_exercise_bloc.dart';
+import '../../config/exercise_config.dart';
+import '../../utils/app_utils.dart';
+import '../../widgets/custom_button_widget.dart';
+import '../../widgets/title_app_bar.dart';
 
 class StartExercisePage extends StatelessWidget {
   final List<ExerciseModel> exercise;

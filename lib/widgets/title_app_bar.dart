@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../utils/export_utils.dart';
+import '../utils/app_utils.dart';
 
 class TitleAppBar extends StatelessWidget {
   final String leftText;

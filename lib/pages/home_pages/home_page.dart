@@ -1,10 +1,18 @@
-import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-
-import '../../widgets/export_widgets.dart';
-import '../export_pages.dart';
+import '../../utils/assets_util.dart';
+import '../../widgets/custom_card_homepage.dart';
+import '../../widgets/custom_container_button.dart';
+import '../../widgets/row_main_space_between_text.dart';
+import '../../widgets/start_fitness_widget.dart';
+import '../../widgets/title_app_bar.dart';
+import '../../widgets/weekly_reminder_home_widget.dart';
+import '../discover_pages/bad_habbits_page.dart';
+import '../discover_pages/nutritions_page.dart/nutrition_screen.dart';
+import '../discover_pages/workout_before_18.dart';
+import '../exercises_pages/exercise_tracker_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -37,6 +45,7 @@ class HomePage extends StatelessWidget {
                   left: "Today Workout Plan",
                   right: DateFormat.yMMMMEEEEd().format(DateTime.now())),
               StartFitnessWidget(
+                  title: "Ready to Start",
                   onTap: () => PersistentNavBarNavigator.pushNewScreen(context,
                       screen: const ExerciseTrackerPage(), withNavBar: false)),
               SizedBox(height: 10.h),

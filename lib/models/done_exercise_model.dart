@@ -1,19 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:equatable/equatable.dart';
 
 import 'package:fitness_app/models/export_model.dart';
 
-class DoneExerciseModel {
+class DoneExerciseModel extends Equatable {
   final String date;
-  final String duration;
+  final int duration;
   final double totalCalories;
   final int month;
   final int day;
   final List<ExerciseModel> accomodateExercises;
-
-  DoneExerciseModel({
+  const DoneExerciseModel({
     required this.date,
     required this.duration,
     required this.totalCalories,
@@ -24,7 +22,7 @@ class DoneExerciseModel {
 
   DoneExerciseModel copyWith({
     String? date,
-    String? duration,
+    int? duration,
     double? totalCalories,
     int? month,
     int? day,
@@ -54,12 +52,12 @@ class DoneExerciseModel {
   factory DoneExerciseModel.fromMap(Map<String, dynamic> map) {
     return DoneExerciseModel(
       date: map['date'] as String,
-      duration: map['duration'] as String,
+      duration: map['duration'] as int,
       totalCalories: map['totalCalories'] as double,
       month: map['month'] as int,
       day: map['day'] as int,
       accomodateExercises: List<ExerciseModel>.from(
-        (map['accomodateExercises'] as List<int>).map<ExerciseModel>(
+        (map['accomodateExercises'] as List).map<ExerciseModel>(
           (x) => ExerciseModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
@@ -72,29 +70,17 @@ class DoneExerciseModel {
       DoneExerciseModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() {
-    return 'DoneExerciseModel(date: $date, duration: $duration, totalCalories: $totalCalories, month: $month, day: $day, accomodateExercises: $accomodateExercises)';
-  }
+  bool get stringify => true;
 
   @override
-  bool operator ==(covariant DoneExerciseModel other) {
-    if (identical(this, other)) return true;
-
-    return other.date == date &&
-        other.duration == duration &&
-        other.totalCalories == totalCalories &&
-        other.month == month &&
-        other.day == day &&
-        listEquals(other.accomodateExercises, accomodateExercises);
-  }
-
-  @override
-  int get hashCode {
-    return date.hashCode ^
-        duration.hashCode ^
-        totalCalories.hashCode ^
-        month.hashCode ^
-        day.hashCode ^
-        accomodateExercises.hashCode;
+  List<Object> get props {
+    return [
+      date,
+      duration,
+      totalCalories,
+      month,
+      day,
+      accomodateExercises,
+    ];
   }
 }

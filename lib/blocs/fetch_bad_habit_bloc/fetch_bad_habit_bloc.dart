@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:fitness_app/models/bad_habits_model.dart';
-import 'package:fitness_app/repository/export_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../repository/firebase_service/bad_habits_firebase_service.dart';
 
 part 'fetch_bad_habit_event.dart';
 part 'fetch_bad_habit_state.dart';

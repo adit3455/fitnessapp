@@ -1,5 +1,7 @@
-import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../utils/app_utils.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
