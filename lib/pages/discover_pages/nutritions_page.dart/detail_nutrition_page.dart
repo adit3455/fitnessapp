@@ -1,10 +1,15 @@
+import 'package:card_loading/card_loading.dart';
 import 'package:fitness_app/models/export_model.dart';
-import 'package:fitness_app/utils/export_utils.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../blocs/export_blocs.dart';
+import '../../../blocs/fetch_nutrition_bloc/fetch_nutrition_bloc.dart';
 import '../../../repository/firebase_service/nutrition_firebase_service.dart';
+import '../../../utils/app_utils.dart';
+import '../../../widgets/custom_bold_title.dart';
+import '../../../widgets/more_foods_detail_widget.dart';
+import '../../../widgets/title_app_bar.dart';
 
 class DetailNutritionPage extends StatelessWidget {
   final FoodModel foodModel;

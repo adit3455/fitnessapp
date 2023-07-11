@@ -1,10 +1,16 @@
 import 'package:fitness_app/models/bad_habits_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../blocs/export_blocs.dart';
-import '../../repository/export_repo.dart';
-import '../../utils/export_utils.dart';
-import '../../widgets/export_widgets.dart';
+import '../../blocs/fetch_bad_habit_bloc/fetch_bad_habit_bloc.dart';
+import '../../repository/firebase_service/bad_habits_firebase_service.dart';
+import '../../utils/app_utils.dart';
+import '../../utils/assets_util.dart';
+import '../../widgets/bullet_text.dart';
+import '../../widgets/custom_bold_title.dart';
+import '../../widgets/loading_widget.dart';
+import '../../widgets/title_app_bar.dart';
 
 class BadHabbitsPage extends StatelessWidget {
   const BadHabbitsPage({super.key});

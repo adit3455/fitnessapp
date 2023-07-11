@@ -1,8 +1,11 @@
-import 'package:fitness_app/pages/export_pages.dart';
 import 'package:fitness_app/utils/app_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import '../pages/home_pages/home_page.dart';
+import '../pages/main_pages/profile_page.dart';
+import '../pages/main_pages/reports_page.dart';
 
 class BottomNavigationWidget extends StatelessWidget {
   const BottomNavigationWidget({super.key});

@@ -1,4 +1,3 @@
-import 'package:fitness_app/blocs/export_blocs.dart';
 import 'package:fitness_app/repository/firebase_service/nutrition_firebase_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';

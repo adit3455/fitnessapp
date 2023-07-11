@@ -1,48 +1,24 @@
-import 'dart:async';
-
 import 'package:fitness_app/config/exercise_config.dart';
 import 'package:fitness_app/models/exercises_model.dart';
-import 'package:fitness_app/repository/export_repo.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
+import 'package:fitness_app/widgets/custom_card_homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../blocs/export_blocs.dart';
-import '../../utils/export_utils.dart';
+import '../../blocs/fetch_exercise_bloc/fetch_exercise_bloc.dart';
+import '../../repository/firebase_exercise_module.dart/firebase_exercise_module.dart';
+import '../../utils/app_utils.dart';
+import '../../utils/assets_util.dart';
+import '../../widgets/custom_bold_title.dart';
+import '../../widgets/loading_widget.dart';
+import '../../widgets/start_fitness_widget.dart';
+import '../../widgets/title_app_bar.dart';
 
 class ExerciseTrackerPage extends StatelessWidget {
   const ExerciseTrackerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Timer? countdownTimer;
-
-    Duration myDuration = const Duration(seconds: 10);
-
-    void stopTimer() {
-      countdownTimer!.cancel();
-    }
-
-    void resetTimer() {
-      stopTimer();
-      myDuration = const Duration(seconds: 10);
-    }
-
-    void setCountDown() {
-      const reduceSecondsBy = 1;
-      final seconds = myDuration.inSeconds - reduceSecondsBy;
-
-      if (seconds < 0) {
-        countdownTimer!.cancel();
-      } else {
-        myDuration = Duration(seconds: seconds);
-      }
-    }
-
-    void startTimer() {
-      countdownTimer =
-          Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
-    }
-
     ExerciseConfig exerciseConfig = ExerciseConfig();
     return Scaffold(
         appBar: AppBar(
@@ -120,29 +96,16 @@ class ExerciseTrackerPage extends StatelessWidget {
                                             arguments: exerciseConfig
                                                 .startExerciseList(
                                                     state.listExercise))),
-                                    SizedBox(height: 20.h),
-                                    Center(
-                                        child: CustomButtonWidget(
-                                            labelButton: "Start Timer",
-                                            icon: Icons.start,
-                                            onPressed: () {
-                                              startTimer();
-                                            })),
-                                    Center(
-                                        child: CustomButtonWidget(
-                                            labelButton: "Stop Timer",
-                                            icon: Icons.start,
-                                            onPressed: () {
-                                              stopTimer();
-                                            })),
-                                    Center(
-                                        child: CustomButtonWidget(
-                                            labelButton: "Reset Timer",
-                                            icon: Icons.start,
-                                            onPressed: () {
-                                              resetTimer();
-                                            })),
-                                    SizedBox(height: 20.h),
+                                    SizedBox(height: 10.h),
+                                    const CustomBoldTitle(
+                                        title: "Create your own Exercise!"),
+                                    CustomCardHomePage(
+                                        image: AssetsUtil.runBoy,
+                                        onPressed: () => Navigator.pushNamed(
+                                            context, '/myTraining',
+                                            arguments: state.listExercise),
+                                        labelText: "My Training"),
+                                    SizedBox(height: 10.h),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -219,13 +182,5 @@ class ExerciseTrackerPage extends StatelessWidget {
 
                   return const Text("Theres Something Wrong");
                 }))));
-  }
-}
-
-class Ticker {
-  const Ticker();
-  Stream<int> tick({required int ticks}) {
-    return Stream.periodic(const Duration(seconds: 1), (x) => ticks - x - 1)
-        .take(ticks);
   }
 }

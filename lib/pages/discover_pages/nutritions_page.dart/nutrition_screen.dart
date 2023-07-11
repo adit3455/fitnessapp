@@ -1,8 +1,16 @@
 import 'package:fitness_app/repository/firebase_service/nutrition_firebase_service.dart';
-import 'package:fitness_app/utils/export_utils.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
-import '../../../blocs/export_blocs.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../blocs/fetch_nutrition_bloc/fetch_nutrition_bloc.dart';
+import '../../../blocs/search_food_cubit/search_food_cubit.dart';
+import '../../../widgets/custom_bold_title.dart';
+import '../../../widgets/custom_text_form_field_widget.dart';
+import '../../../widgets/loading_widget.dart';
+import '../../../widgets/nutrition_card_widget.dart';
+import '../../../widgets/nutrition_food_card_widget.dart';
+import '../../../widgets/title_app_bar.dart';
 
 class NutritionScreen extends StatelessWidget {
   const NutritionScreen({super.key});

@@ -7,7 +7,7 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  build_runner: ^2.4.5
+  build_runner: ^2.4.6
   card_loading: ^0.3.0
   cloud_firestore: ^4.6.0
   cupertino_icons: ^1.0.2
@@ -17,7 +17,6 @@ dependencies:
   firebase_auth: ^4.5.0
   firebase_core: ^2.11.0
   firebase_storage: ^11.2.1
-  fl_chart: ^0.62.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
@@ -28,10 +27,12 @@ dependencies:
   image_picker: ^0.8.7+5
   intl: ^0.18.1
   isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
   isar_generator: ^3.1.0+1
   onboarding: ^3.1.0
   path_provider: ^2.0.15
   persistent_bottom_nav_bar: ^5.0.2
+  syncfusion_flutter_charts: ^22.1.37
   table_calendar: ^3.0.9
 
 dev_dependencies:

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import '../../pages/export_pages.dart';
+import '../../pages/person_pages/edit_profile_screen.dart';
 
 class FirebaseStorageConfig extends BaseFirebaseStorageConfig {
   @override

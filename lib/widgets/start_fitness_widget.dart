@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../utils/export_utils.dart';
+import '../utils/app_utils.dart';
+import '../utils/assets_util.dart';
 
 class StartFitnessWidget extends StatelessWidget {
   final void Function()? onTap;
@@ -51,7 +53,7 @@ class StartFitnessWidget extends StatelessWidget {
                             ),
                             SizedBox(height: 3.h),
                             subTitle ??
-                                Text("Mon 26 Apr",
+                                Text("Your Exercises?",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineSmall!

@@ -1,9 +1,13 @@
-import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../blocs/export_blocs.dart';
+import '../../blocs/start_exercise_bloc/start_exercise_bloc.dart';
 import '../../models/export_model.dart';
-import '../../widgets/export_widgets.dart';
+import '../../utils/app_utils.dart';
+import '../../widgets/custom_bold_title.dart';
+import '../../widgets/custom_button_widget.dart';
+import '../../widgets/title_app_bar.dart';
 
 class OnExercisePage extends StatelessWidget {
   const OnExercisePage({super.key});
@@ -161,11 +165,12 @@ class OnExercisePage extends StatelessWidget {
             title: const TitleAppBar(leftText: "Ready to", rightText: "GO !!")),
         floatingActionButton:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          TextButton(
-              onPressed: () => context
-                  .read<StartExerciseBloc>()
-                  .add(PreviousExercise(exercises: exercises, index: index)),
-              child: const Text("Previous")),
+          index == 0
+              ? const SizedBox()
+              : TextButton(
+                  onPressed: () => context.read<StartExerciseBloc>().add(
+                      PreviousExercise(exercises: exercises, index: index)),
+                  child: const Text("Previous")),
           exercises.length - 1 != index
               ? TextButton(
                   onPressed: () => context

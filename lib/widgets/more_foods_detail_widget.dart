@@ -1,8 +1,9 @@
-import 'package:fitness_app/utils/export_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/export_model.dart';
-import 'export_widgets.dart';
+import '../utils/app_utils.dart';
+import 'custom_bold_title.dart';
 
 class MoreFoodsDetailWidget extends StatelessWidget {
   const MoreFoodsDetailWidget(

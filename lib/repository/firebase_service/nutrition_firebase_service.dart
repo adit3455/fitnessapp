@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:fitness_app/repository/firebase_service/base_cloud_firebase.dart';
 
 import '../../models/export_model.dart';
-import '../export_repo.dart';
 
 class NutritionFirebaseService extends BaseCloudFirebaseService {
   @override

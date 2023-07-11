@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:fitness_app/config/exercise_config.dart';
 import 'package:fitness_app/models/exercises_model.dart';
-import 'package:fitness_app/repository/export_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../repository/firebase_exercise_module.dart/firebase_exercise_module.dart';
 
 part 'start_exercise_event.dart';
 part 'start_exercise_state.dart';
@@ -23,7 +24,7 @@ class StartExerciseBloc extends Bloc<StartExerciseEvent, StartExerciseState> {
       emit(UnStartExercise());
 
       event.accommodateExercise.isNotEmpty
-          ? await FirebaseExerciseModule().sendDoneExercise(
+          ? await FirebaseExerciseModule().handlingUpdateExercise(
               date: event.date,
               duration: event.duration,
               totalCalories: event.totalCalories,

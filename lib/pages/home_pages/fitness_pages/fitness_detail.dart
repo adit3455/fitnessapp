@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../utils/export_utils.dart';
-import '../../../widgets/export_widgets.dart';
+import '../../../utils/app_utils.dart';
+import '../../../utils/assets_util.dart';
+import '../../../widgets/bullet_text.dart';
+import '../../../widgets/custom_bold_title.dart';
+import '../../../widgets/title_app_bar.dart';
 
 class FitnessDetail extends StatelessWidget {
   const FitnessDetail({super.key});

@@ -1,12 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitness_app/pages/export_pages.dart';
-import 'package:fitness_app/utils/export_utils.dart';
-import 'package:fitness_app/widgets/export_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import '../../blocs/export_blocs.dart';
+import '../../blocs/auth_bloc/auth_bloc.dart';
 import '../../repository/firebase_storage/firebase_storage_config.dart';
+import '../../utils/app_utils.dart';
+import '../../widgets/custom_text_form_field_widget.dart';
+import '../../widgets/loading_widget.dart';
+import '../../widgets/title_app_bar.dart';
+import '../auth_pages/login_page.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});

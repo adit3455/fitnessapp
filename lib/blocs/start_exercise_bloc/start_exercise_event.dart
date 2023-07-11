@@ -18,7 +18,7 @@ class OnStartExercise extends StartExerciseEvent {
 
 class InitState extends StartExerciseEvent {
   final String date;
-  final String duration;
+  final int duration;
   final double totalCalories;
   final List<ExerciseModel> accommodateExercise;
 
