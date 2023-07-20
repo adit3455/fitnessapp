@@ -1,9 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
+import 'package:isar/isar.dart';
 
-class ExerciseModel extends Equatable {
+part 'exercises_model.g.dart';
+
+@Collection()
+class ExerciseModel {
+  final Id id;
   final String name;
   final String instructions;
   final String image;
@@ -13,6 +18,7 @@ class ExerciseModel extends Equatable {
   final String type;
 
   const ExerciseModel({
+    this.id = Isar.autoIncrement,
     required this.name,
     required this.instructions,
     required this.image,
@@ -72,18 +78,31 @@ class ExerciseModel extends Equatable {
       ExerciseModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  bool get stringify => true;
+  String toString() {
+    return 'ExerciseModel(name: $name, instructions: $instructions, image: $image, duration: $duration, calories: $calories, dificulities: $dificulities, type: $type)';
+  }
 
   @override
-  List<Object?> get props {
-    return [
-      name,
-      instructions,
-      image,
-      duration,
-      calories,
-      dificulities,
-      type,
-    ];
+  bool operator ==(covariant ExerciseModel other) {
+    if (identical(this, other)) return true;
+
+    return other.name == name &&
+        other.instructions == instructions &&
+        other.image == image &&
+        other.duration == duration &&
+        other.calories == calories &&
+        other.dificulities == dificulities &&
+        other.type == type;
+  }
+
+  @override
+  int get hashCode {
+    return name.hashCode ^
+        instructions.hashCode ^
+        image.hashCode ^
+        duration.hashCode ^
+        calories.hashCode ^
+        dificulities.hashCode ^
+        type.hashCode;
   }
 }
