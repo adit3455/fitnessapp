@@ -1,5 +1,6 @@
 import 'package:fitness_app/models/export_model.dart';
 import 'package:fitness_app/pages/exercises_pages/start_exercise_page.dart';
+import 'package:fitness_app/pages/mytraining_pages/accomodate_training_page.dart';
 import 'package:fitness_app/pages/mytraining_pages/add_exercise.dart';
 import 'package:fitness_app/pages/mytraining_pages/mytraining_page.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +123,10 @@ class AppRoutesConfig {
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/exerciseTracker'),
             builder: (context) => const ExerciseTrackerPage());
-
+      case '/accomodateExercises':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/accomodateExercises'),
+            builder: (context) => const AccomodateExercisePage());
       case '/exerciseDetail':
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/exerciseDetail'),

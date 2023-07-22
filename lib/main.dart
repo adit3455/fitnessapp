@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fitness_app/blocs/my_training_bloc/my_training_bloc.dart';
 import 'package:fitness_app/config/exercise_config.dart';
 import 'package:fitness_app/config/routes_config.dart';
 import 'package:fitness_app/repository/auth_repository.dart';
+import 'package:fitness_app/repository/isar_repo/isar_my_training.dart';
 import 'package:fitness_app/utils/app_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +27,9 @@ void main() async {
               BlocProvider(
                   create: (context) =>
                       StartExerciseBloc(exerciseConfig: ExerciseConfig())),
+              BlocProvider(
+                  create: (context) =>
+                      MyTrainingBloc(isarMyTraining: IsarMyTraining()))
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,

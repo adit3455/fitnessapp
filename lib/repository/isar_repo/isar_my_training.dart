@@ -13,9 +13,13 @@ class IsarMyTraining extends BaseIsarReporitories<TrainingModel> {
   }
 
   @override
-  Future<void> deleteByIndex(int index) async {
+  Future<void> deleteByIndex(TrainingModel tModel) async {
     final isar = await db;
-    await isar.writeTxn(() async => isar.trainingModels.delete(index));
+    final List<int> lExercises = [];
+    tModel.lExercises.map((e) => lExercises.add(e.id)).toList();
+
+    await isar.writeTxn(() async => isar.trainingModels.delete(tModel.id));
+    await isar.writeTxn(() async => isar.exerciseModels.deleteAll(lExercises));
   }
 
   @override
@@ -43,10 +47,17 @@ class IsarMyTraining extends BaseIsarReporitories<TrainingModel> {
     await isar.writeTxn(() async => isar.trainingModels.deleteAll(listTIsar));
   }
 
-  Future<void> updateTraining(String name, TrainingModel trainingModel) async {
+  Future<void> updateTrainingName(
+      String name, TrainingModel trainingModel) async {
     final isar = await db;
-    final newData = trainingModel.copyWith(name: name);
-    isar.writeTxn(() async => isar.trainingModels.put(newData));
+
+    final data = await isar.trainingModels
+        .where()
+        .idEqualTo(trainingModel.id)
+        .findFirst();
+    data!.name = name;
+
+    isar.writeTxn(() async => isar.trainingModels.put(data));
   }
 
   Future<void> clearlExercise() async {

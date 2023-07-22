@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^5.1.2
+  dropdown_button2: ^2.3.6
   equatable: ^2.0.5
   firebase_auth: ^4.5.0
   firebase_core: ^2.11.0

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../blocs/fetch_exercise_bloc/fetch_exercise_bloc.dart';
+import '../../blocs/my_training_bloc/my_training_bloc.dart';
 import '../../repository/firebase_exercise_module.dart/firebase_exercise_module.dart';
 import '../../utils/app_utils.dart';
 import '../../utils/assets_util.dart';
@@ -101,9 +102,14 @@ class ExerciseTrackerPage extends StatelessWidget {
                                         title: "Create your own Exercise!"),
                                     CustomCardHomePage(
                                         image: AssetsUtil.runBoy,
-                                        onPressed: () => Navigator.pushNamed(
-                                            context, '/myTraining',
-                                            arguments: state.listExercise),
+                                        onPressed: () {
+                                          context
+                                              .read<MyTrainingBloc>()
+                                              .add(MyTrainingStarted());
+                                          Navigator.pushNamed(
+                                              context, '/myTraining',
+                                              arguments: state.listExercise);
+                                        },
                                         labelText: "My Training"),
                                     SizedBox(height: 10.h),
                                     Row(

@@ -10,7 +10,7 @@ abstract class BaseIsarReporitories<T> {
 
   Future<List<T>> getAllIsar();
 
-  Future<void> deleteByIndex(int index);
+  Future<void> deleteByIndex(T tModel);
 
   Future<void> deleteAllIsar(List<int> listTIsar);
 
