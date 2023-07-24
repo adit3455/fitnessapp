@@ -20,6 +20,7 @@ class CalendarImplementsBloc
           calendarFormat: event.calendarFormat,
           selectedDay: event.timeNow));
     });
+
     on<ChangeDayFormat>((event, emit) {
       emit(ChangeCalendarFormat(
           timeNow: event.timeNow,

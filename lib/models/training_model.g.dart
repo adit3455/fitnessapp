@@ -108,6 +108,7 @@ List<IsarLinkBase<dynamic>> _trainingModelGetLinks(TrainingModel object) {
 
 void _trainingModelAttach(
     IsarCollection<dynamic> col, Id id, TrainingModel object) {
+  object.id = id;
   object.lExercises
       .attach(col, col.isar.collection<ExerciseModel>(), r'lExercises', id);
 }

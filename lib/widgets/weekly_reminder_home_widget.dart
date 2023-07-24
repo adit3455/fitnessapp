@@ -9,8 +9,10 @@ class WeeklyReminderWidget extends StatelessWidget {
   final String title;
   final Widget? trailing;
   final BoxFit boxFit;
+  final void Function()? onTap;
 
   const WeeklyReminderWidget({
+    this.onTap,
     this.isAssetImage = true,
     required this.image,
     required this.title,
@@ -26,7 +28,7 @@ class WeeklyReminderWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(20.0.h),
       child: InkWell(
         borderRadius: BorderRadius.circular(20.0.h),
-        onTap: () {},
+        onTap: onTap,
         focusColor: AppUtils.gradientRightBackgroundColor,
         hoverColor: AppUtils.gradientRightBackgroundColor,
         splashColor: AppUtils.gradientRightBackgroundColor,

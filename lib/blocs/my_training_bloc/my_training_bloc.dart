@@ -10,7 +10,6 @@ part 'my_training_state.dart';
 class MyTrainingBloc extends Bloc<MyTrainingEvent, MyTrainingState> {
   final IsarMyTraining _isarMyTraining;
   List<ExerciseModel> lAccomodate = <ExerciseModel>[];
-  List<TrainingModel> lTrain = <TrainingModel>[];
 
   MyTrainingBloc({required IsarMyTraining isarMyTraining})
       : _isarMyTraining = isarMyTraining,

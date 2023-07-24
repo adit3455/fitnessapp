@@ -1,7 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'package:fitness_app/blocs/set_weekly_goal_bloc/set_weekly_goal_bloc.dart';
+import 'package:fitness_app/widgets/calendar_custom_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import 'package:fitness_app/pages/set_weekly_goal_page.dart';
+
 import '../../utils/assets_util.dart';
 import '../../widgets/custom_card_homepage.dart';
 import '../../widgets/custom_container_button.dart';
@@ -24,7 +32,7 @@ class HomePage extends StatelessWidget {
         title: const TitleAppBar(leftText: "Fitness", rightText: "App"),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () async {},
               icon: const Icon(Icons.notifications_active_outlined))
         ],
       ),
@@ -35,12 +43,33 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 10.0.h),
-              const WeeklyReminderWidget(
-                  image: AssetsUtil.peopleExerciseForWeekly,
-                  title: "Set weekly goal for your Workout to max!",
-                  trailing: CustomContainerButton(
-                    iconData: Icons.add,
-                  )),
+              BlocBuilder<SetWeeklyGoalBloc, SetWeeklyGoalState>(
+                builder: (context, state) {
+                  if (state is SetWeeklyGoalLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (state is SetWeeklyCalendar) {
+                    return CalendarCustomWidget(
+                        totalDaySet: state.totalDaySet,
+                        eDoneThisWeek: state.eDoneThisWeek,
+                        mapDone: state.mapDone);
+                  }
+                  if (state is SetWeeklyGoalSetWeekState) {
+                    return WeeklyReminderWidget(
+                        onTap: () => PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: const SetWeeklyGoalPage(),
+                            withNavBar: false),
+                        image: AssetsUtil.peopleExerciseForWeekly,
+                        title: "Set weekly goal for your Workout to max!",
+                        trailing: const CustomContainerButton(
+                          iconData: Icons.add,
+                        ));
+                  }
+                  return const Text("Theres Something Wrong");
+                },
+              ),
+              SizedBox(height: 10.0.h),
               RowMainSpaceBetweenText(
                   left: "Today Workout Plan",
                   right: DateFormat.yMMMMEEEEd().format(DateTime.now())),

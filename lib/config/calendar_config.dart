@@ -54,6 +54,22 @@ class CalendarConfig extends Equatable {
     };
   }
 
+  int getThisWeekDates(List<DateTime> lDateTime) {
+    DateTime now = DateTime.now();
+    int currentWeekday = now.weekday - 1;
+    final lDateNew = lDateTime.map((e) => DateFormat.yMd().format(e)).toList();
+    if (currentWeekday < 0) {
+      currentWeekday = 6;
+    }
+    DateTime startOfWeek = now.subtract(Duration(days: currentWeekday));
+    final week =
+        List.generate(7, (index) => startOfWeek.add(Duration(days: index)));
+    final data = week
+        .where((element) => lDateNew.contains(DateFormat.yMd().format(element)))
+        .toList();
+    return data.length;
+  }
+
   @override
   List<Object?> get props => [l];
 }
