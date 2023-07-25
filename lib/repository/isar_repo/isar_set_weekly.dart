@@ -3,6 +3,9 @@ import 'package:fitness_app/repository/isar_repo/base_isar_repo.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../models/exercises_model.dart';
+import '../../models/training_model.dart';
+
 class IsarSetWeekly extends BaseIsarReporitories<SetWeeklyGoalModel> {
   @override
   Future<void> deleteAllIsar(List<int> listTIsar) async {
@@ -24,7 +27,9 @@ class IsarSetWeekly extends BaseIsarReporitories<SetWeeklyGoalModel> {
     final dir = await getApplicationDocumentsDirectory();
 
     if (Isar.instanceNames.isEmpty) {
-      return await Isar.open([SetWeeklyGoalModelSchema], directory: dir.path);
+      return await Isar.open(
+          [SetWeeklyGoalModelSchema, TrainingModelSchema, ExerciseModelSchema],
+          directory: dir.path);
     }
     return Future.value(Isar.getInstance());
   }

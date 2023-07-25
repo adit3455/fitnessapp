@@ -4,6 +4,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../models/exercises_model.dart';
+import '../../models/set_weekly_goal_model.dart';
 
 class IsarMyTraining extends BaseIsarReporitories<TrainingModel> {
   @override
@@ -33,7 +34,8 @@ class IsarMyTraining extends BaseIsarReporitories<TrainingModel> {
     final dir = await getApplicationDocumentsDirectory();
 
     if (Isar.instanceNames.isEmpty) {
-      return await Isar.open([TrainingModelSchema, ExerciseModelSchema],
+      return await Isar.open(
+          [TrainingModelSchema, ExerciseModelSchema, SetWeeklyGoalModelSchema],
           inspector: true, directory: dir.path);
     }
 

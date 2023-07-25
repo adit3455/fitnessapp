@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:fitness_app/widgets/custom_bold_title.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -15,6 +16,11 @@ class CalendarCustomWidget extends StatelessWidget {
       required this.mapDone,
       super.key});
 
+  String strDigits(int n) => n.toString().padLeft(2, '0');
+  String hours(Duration d) => strDigits(d.inHours.remainder(24));
+  String minutes(Duration d) => strDigits(d.inMinutes.remainder(60));
+  String seconds(Duration d) => strDigits(d.inSeconds.remainder(60));
+
   @override
   Widget build(BuildContext context) {
     int getHashCode(DateTime key) =>
@@ -27,13 +33,43 @@ class CalendarCustomWidget extends StatelessWidget {
       return events[day] ?? [];
     }
 
+    final lDone = mapDone.values.toList().expand((element) => element).toList();
+
+    final tCalories = lDone.fold(
+        0,
+        (previousValue, element) =>
+            previousValue + element.totalCalories.toInt());
+
+    final tDuration = lDone.fold(
+        0, (previousValue, element) => previousValue + element.duration);
+
+    final Duration d = Duration(seconds: tDuration);
+
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text("data"),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const CustomBoldTitle(title: "Total", paddingSize: 0),
+            const SizedBox(height: 5),
+            Row(
+              children: [
+                Row(
+                  children: [
+                    CustomBoldTitle(title: "$tCalories", paddingSize: 0),
+                    Text(" Kcal", style: Theme.of(context).textTheme.bodyLarge),
+                  ],
+                ),
+                const SizedBox(width: 20.0),
+                CustomBoldTitle(
+                    title: "${hours(d)}:${minutes(d)}:${seconds(d)}",
+                    paddingSize: 0),
+                Text(" Duration", style: Theme.of(context).textTheme.bodyLarge),
+              ],
+            )
+          ]),
           Card(
             color: Colors.white,
             child: Padding(
@@ -73,6 +109,7 @@ class CalendarCustomWidget extends StatelessWidget {
                           ],
                         ),
                       ]),
+                  const SizedBox(height: 10),
                   TableCalendar(
                       calendarFormat: CalendarFormat.week,
                       eventLoader: getEventForDay,
