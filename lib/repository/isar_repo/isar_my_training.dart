@@ -1,3 +1,4 @@
+import 'package:fitness_app/models/reminder_timer.dart';
 import 'package:fitness_app/models/training_model.dart';
 import 'package:fitness_app/repository/isar_repo/base_isar_repo.dart';
 import 'package:isar/isar.dart';
@@ -34,9 +35,12 @@ class IsarMyTraining extends BaseIsarReporitories<TrainingModel> {
     final dir = await getApplicationDocumentsDirectory();
 
     if (Isar.instanceNames.isEmpty) {
-      return await Isar.open(
-          [TrainingModelSchema, ExerciseModelSchema, SetWeeklyGoalModelSchema],
-          inspector: true, directory: dir.path);
+      return await Isar.open([
+        TrainingModelSchema,
+        ExerciseModelSchema,
+        SetWeeklyGoalModelSchema,
+        ReminderTimerModelSchema
+      ], inspector: true, directory: dir.path);
     }
 
     return Future.value(Isar.getInstance());

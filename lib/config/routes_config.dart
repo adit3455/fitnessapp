@@ -3,6 +3,7 @@ import 'package:fitness_app/pages/exercises_pages/start_exercise_page.dart';
 import 'package:fitness_app/pages/mytraining_pages/accomodate_training_page.dart';
 import 'package:fitness_app/pages/mytraining_pages/add_exercise.dart';
 import 'package:fitness_app/pages/mytraining_pages/mytraining_page.dart';
+import 'package:fitness_app/pages/set_reminder_page.dart';
 import 'package:fitness_app/pages/set_weekly_goal_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/auth_pages/login_page.dart';
@@ -124,6 +125,10 @@ class AppRoutesConfig {
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/exerciseTracker'),
             builder: (context) => const ExerciseTrackerPage());
+      case '/setReminder':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/setReminder'),
+            builder: (context) => const SetReminderPage());
       case '/accomodateExercises':
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/accomodateExercises'),

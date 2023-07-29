@@ -4,6 +4,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../models/exercises_model.dart';
+import '../../models/reminder_timer.dart';
 import '../../models/training_model.dart';
 
 class IsarSetWeekly extends BaseIsarReporitories<SetWeeklyGoalModel> {
@@ -27,9 +28,12 @@ class IsarSetWeekly extends BaseIsarReporitories<SetWeeklyGoalModel> {
     final dir = await getApplicationDocumentsDirectory();
 
     if (Isar.instanceNames.isEmpty) {
-      return await Isar.open(
-          [SetWeeklyGoalModelSchema, TrainingModelSchema, ExerciseModelSchema],
-          directory: dir.path);
+      return await Isar.open([
+        SetWeeklyGoalModelSchema,
+        TrainingModelSchema,
+        ExerciseModelSchema,
+        ReminderTimerModelSchema
+      ], directory: dir.path);
     }
     return Future.value(Isar.getInstance());
   }
@@ -46,5 +50,16 @@ class IsarSetWeekly extends BaseIsarReporitories<SetWeeklyGoalModel> {
   Future<List<SetWeeklyGoalModel>> getAllIsar() async {
     final isar = await db;
     return await isar.setWeeklyGoalModels.where().findAll();
+  }
+
+  Future<void> updateIsar(SetWeeklyGoalModel tModel, String daySet) async {
+    final isar = await db;
+
+    final data =
+        await isar.setWeeklyGoalModels.where().idEqualTo(tModel.id).findFirst();
+
+    data!.daySet = daySet;
+
+    await isar.writeTxn(() async => await isar.setWeeklyGoalModels.put(data));
   }
 }

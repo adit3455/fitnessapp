@@ -79,7 +79,7 @@ class ExerciseDetailPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                        "Dificulities : ${exercise.dificulities.capitalize()} | Calories Burn in 1 Minutes : ${exercise.calories.toInt()} Calories | ${exerciseConfig.exerciseTypeChanger(exercise.type)}"),
+                        "Dificulities : ${exercise.dificulities.capitalize} | Calories Burn in 1 Minutes : ${exercise.calories.toInt()} Calories | ${exerciseConfig.exerciseTypeChanger(exercise.type)}"),
                     const SizedBox(height: 5.0),
                     Container(
                         margin: EdgeInsets.all(5.h),
@@ -177,7 +177,7 @@ class ExerciseDetailPage extends StatelessWidget {
                                                           SizedBox(
                                                               width: 240.w,
                                                               child: Text(
-                                                                  "1 Minute : ${stateList[index].calories.toInt()} Calories | Dificulities : ${stateList[index].dificulities.capitalize()}",
+                                                                  "1 Minute : ${stateList[index].calories.toInt()} Calories | Dificulities : ${stateList[index].dificulities.capitalize}",
                                                                   textAlign:
                                                                       TextAlign
                                                                           .start,

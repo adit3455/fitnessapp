@@ -52,7 +52,7 @@ class ListExercisePage extends StatelessWidget {
                               width: 100.w)),
                       title: Text(exercise[index].name),
                       subtitle: Text(
-                          "1 Minute : ${exercise[index].calories.toInt()} Calories | Dificulities : ${exercise[index].dificulities.capitalize()}"),
+                          "1 Minute : ${exercise[index].calories.toInt()} Calories | Dificulities : ${exercise[index].dificulities.capitalize}"),
                     );
                   },
                   separatorBuilder: (context, index) {

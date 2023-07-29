@@ -52,3 +52,5 @@ class ChangeTrainingName extends MyTrainingEvent {
   @override
   List<Object> get props => [name, tModel];
 }
+
+class ClearAllTraining extends MyTrainingEvent {}

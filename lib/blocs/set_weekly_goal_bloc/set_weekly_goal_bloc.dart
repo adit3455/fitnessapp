@@ -60,5 +60,17 @@ class SetWeeklyGoalBloc extends Bloc<SetWeeklyGoalEvent, SetWeeklyGoalState> {
       await _isarSetWeekly.saveIsar(data);
       add(SetWeeklyGoalStarted());
     });
+
+    on<SetWeeklyNavigate>((event, emit) {
+      emit(SetWeeklyGoalSetWeekState(selectedDay: selectedDay));
+    });
+
+    on<UpdateSetWeekly>((event, emit) async {
+      emit(SetWeeklyGoalLoading());
+      final data = await isarSetWeekly.getAllIsar();
+      final uData = data.firstWhere((element) => element.id == 1);
+      await isarSetWeekly.updateIsar(uData, event.daySet);
+      add(SetWeeklyGoalStarted());
+    });
   }
 }

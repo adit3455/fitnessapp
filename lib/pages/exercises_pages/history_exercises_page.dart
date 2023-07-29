@@ -131,10 +131,12 @@ class HistoryExercisesPage extends StatelessWidget {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(20.0),
-                                                        child: Image.network(e
-                                                            .accomodateExercises[
-                                                                index]
-                                                            .image),
+                                                        child: Image.network(
+                                                            e
+                                                                .accomodateExercises[
+                                                                    index]
+                                                                .image,
+                                                            fit: BoxFit.fill),
                                                       ),
                                                       title: Text(e
                                                           .accomodateExercises[
@@ -144,7 +146,7 @@ class HistoryExercisesPage extends StatelessWidget {
                                                           .accomodateExercises[
                                                               index]
                                                           .dificulities
-                                                          .capitalize()),
+                                                          .capitalize),
                                                     )),
                                           ],
                                         ),
@@ -240,10 +242,13 @@ class HistoryExercisesPage extends StatelessWidget {
                                                                   BorderRadius
                                                                       .circular(
                                                                           20.0),
-                                                              child: Image.network(e
-                                                                  .accomodateExercises[
-                                                                      index]
-                                                                  .image),
+                                                              child: Image.network(
+                                                                  e
+                                                                      .accomodateExercises[
+                                                                          index]
+                                                                      .image,
+                                                                  fit: BoxFit
+                                                                      .fill),
                                                             ),
                                                             title: Text(e
                                                                 .accomodateExercises[
@@ -253,7 +258,7 @@ class HistoryExercisesPage extends StatelessWidget {
                                                                 .accomodateExercises[
                                                                     index]
                                                                 .dificulities
-                                                                .capitalize()),
+                                                                .capitalize),
                                                           )),
                                                 ],
                                               ),

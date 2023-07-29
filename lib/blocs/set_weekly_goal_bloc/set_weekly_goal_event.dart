@@ -22,3 +22,13 @@ class SaveWeeklyGoal extends SetWeeklyGoalEvent {
   @override
   List<Object> get props => [daySet];
 }
+
+class UpdateSetWeekly extends SetWeeklyGoalEvent {
+  final String daySet;
+  const UpdateSetWeekly({required this.daySet});
+
+  @override
+  List<Object> get props => [daySet];
+}
+
+class SetWeeklyNavigate extends SetWeeklyGoalEvent {}

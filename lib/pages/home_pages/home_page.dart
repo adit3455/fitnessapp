@@ -7,10 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-
 import 'package:fitness_app/pages/set_weekly_goal_page.dart';
-
-import '../../config/notification_config.dart';
 import '../../utils/assets_util.dart';
 import '../../widgets/custom_card_homepage.dart';
 import '../../widgets/custom_container_button.dart';
@@ -33,7 +30,7 @@ class HomePage extends StatelessWidget {
         title: const TitleAppBar(leftText: "Fitness", rightText: "App"),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () async {},
               icon: const Icon(Icons.notifications_active_outlined))
         ],
       ),
@@ -43,15 +40,6 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextButton(
-                  onPressed: () async {
-                    final notif = NotificationConfig();
-                    await notif.showNotification(body: "Body", title: "Title");
-
-                    // await NotificationService()
-                    //     .showNotification(body: "body", title: "title");
-                  },
-                  child: const Text("Klik Disini")),
               SizedBox(height: 10.0.h),
               BlocBuilder<SetWeeklyGoalBloc, SetWeeklyGoalState>(
                 builder: (context, state) {

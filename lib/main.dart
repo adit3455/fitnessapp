@@ -14,10 +14,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'blocs/auth_bloc/auth_bloc.dart';
 import 'blocs/obscure_form_cubit/obscure_form_cubit.dart';
 import 'blocs/start_exercise_bloc/start_exercise_bloc.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'config/notification_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  tz.initializeTimeZones();
+  await NotificationConfig().scheduledDaily();
+
   runApp(ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,

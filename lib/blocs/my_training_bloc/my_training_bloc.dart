@@ -66,5 +66,10 @@ class MyTrainingBloc extends Bloc<MyTrainingEvent, MyTrainingState> {
       emit(MyTrainigGet(lTraining: dataI));
       add(MyTrainingStarted());
     });
+
+    on<ClearAllTraining>((event, emit) async {
+      await isarMyTraining.clearlExercise();
+      emit(MyTrainingLoading());
+    });
   }
 }
