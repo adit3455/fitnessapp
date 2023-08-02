@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:fitness_app/pages/set_weekly_goal_page.dart';
-import '../../config/notification_config.dart';
 import '../../utils/assets_util.dart';
 import '../../widgets/custom_card_homepage.dart';
 import '../../widgets/custom_container_button.dart';
@@ -26,16 +25,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TitleAppBar(leftText: "Fitness", rightText: "App"),
-        actions: [
-          IconButton(
-              onPressed: () async {
-                NotificationConfig()
-                    .showNotification(title: "Show Notif", body: "Right Now");
-              },
-              icon: const Icon(Icons.notifications_active_outlined))
-        ],
-      ),
+          title: const TitleAppBar(leftText: "Fitness", rightText: "App")),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(8.h),

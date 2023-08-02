@@ -53,12 +53,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             centerTitle: true,
-            title: const TitleAppBar(leftText: "Profile", rightText: "Screen"),
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_active_outlined))
-            ]),
+            title: const TitleAppBar(leftText: "Profile", rightText: "Screen")),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(

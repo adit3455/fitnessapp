@@ -8,10 +8,14 @@ part 'calendar_implements_state.dart';
 class CalendarImplementsBloc
     extends Bloc<CalendarImplementsEvent, CalendarImplementsState> {
   final DateTime timeNow = DateTime.now();
+  CalendarFormat calendarFormat = CalendarFormat.month;
   CalendarImplementsBloc() : super(CalendarImplementsInitial()) {
     on<StartingCalendarImplements>((event, emit) async {
       await Future.delayed(const Duration(seconds: 1));
-      emit(ChangeCalendar(timeNow: timeNow, selectedDay: timeNow));
+      emit(ChangeCalendar(
+          timeNow: timeNow,
+          selectedDay: timeNow,
+          calendarFormat: calendarFormat));
     });
 
     on<ChangingCalendarFormat>((event, emit) {

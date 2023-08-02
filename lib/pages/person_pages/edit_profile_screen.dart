@@ -23,12 +23,7 @@ class EditProfileScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             centerTitle: true,
-            title: const TitleAppBar(leftText: "Edit", rightText: "Profile"),
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_active_outlined))
-            ]),
+            title: const TitleAppBar(leftText: "Edit", rightText: "Profile")),
         body: SafeArea(
             child: SingleChildScrollView(
                 child: Column(
