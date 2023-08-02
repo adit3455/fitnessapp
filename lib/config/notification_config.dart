@@ -101,6 +101,9 @@ class NotificationConfig {
   Future<List<PendingNotificationRequest>> getAllNotif() async =>
       await notificationPlugin.pendingNotificationRequests();
 
+  Future<List<ActiveNotification>> get getAllActiveNotif async =>
+      await notificationPlugin.getActiveNotifications();
+
   Future<void> deleteAllNotif() async => await notificationPlugin.cancelAll();
 
   DateTime durationToDateTime(String duration) {

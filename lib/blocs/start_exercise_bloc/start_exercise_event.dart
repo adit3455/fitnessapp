@@ -136,3 +136,5 @@ class PreviousExercise extends StartExerciseEvent {
   @override
   List<Object> get props => [exercises, index];
 }
+
+class DoneButtonExercise extends StartExerciseEvent {}

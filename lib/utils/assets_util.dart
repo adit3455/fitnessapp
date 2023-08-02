@@ -7,9 +7,9 @@ class AssetsUtil {
   static const String nutritionFood = 'assets/images/nutritions_food.jpg';
   static const String stopSmoking =
       'assets/images/stop_smoking_and_drinking.jpg';
-
   static const String exerciseTransparent =
       'assets/images/exercise_transparent.png';
   static const String peopleExerciseForWeekly =
       'assets/images/people_exercise_for_weekly.jpg';
+  static const String fitnessAppLogo = 'assets/images/fitness_app_logo.png';
 }

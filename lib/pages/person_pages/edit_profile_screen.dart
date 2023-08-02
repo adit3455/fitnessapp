@@ -165,17 +165,8 @@ class EditProfileScreen extends StatelessWidget {
                         ),
                         const Divider(),
                         const SizedBox(height: 20.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Email :  ${fAuth.currentUser?.email}",
-                                style: Theme.of(context).textTheme.titleLarge),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.edit,
-                                    color: AppUtils.appbarBackgroundColor))
-                          ],
-                        ),
+                        Text("Email :  ${fAuth.currentUser?.email}",
+                            style: Theme.of(context).textTheme.titleLarge),
                         const Divider(),
                         const SizedBox(height: 20.0),
                         Row(

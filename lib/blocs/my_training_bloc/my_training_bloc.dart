@@ -3,7 +3,6 @@ import 'package:fitness_app/models/training_model.dart';
 import 'package:fitness_app/repository/isar_repo/isar_my_training.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-
 part 'my_training_event.dart';
 part 'my_training_state.dart';
 
@@ -46,6 +45,7 @@ class MyTrainingBloc extends Bloc<MyTrainingEvent, MyTrainingState> {
         ..lExercises.addAll(event.lExercises);
 
       await isarMyTraining.saveIsar(tModel);
+      lAccomodate.clear();
       emit(MyTrainingLoading());
     });
 

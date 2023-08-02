@@ -167,10 +167,9 @@ class StartExerciseBloc extends Bloc<StartExerciseEvent, StartExerciseState> {
     });
 
     on<NextExercise>((event, emit) {
-      durationTimer = _exerciseConfig
-          .durationConverter(event.exercises[event.index + 1].duration!);
-      if (event.exercises.last == event.exercises[event.index + 1]) {
-        _timer?.cancel();
+      if (event.exercises.length - 1 == event.index) {
+        durationTimer = _exerciseConfig
+            .durationConverter(event.exercises[event.index + 1].duration!);
         emit(DoneExerciseState(accomodateExercise: accomodateExercise));
       } else {
         _timer?.cancel();
@@ -238,6 +237,11 @@ class StartExerciseBloc extends Bloc<StartExerciseEvent, StartExerciseState> {
             index: event.index,
             duration: durationTimer));
       });
+    });
+
+    on<DoneButtonExercise>((event, emit) {
+      _timer?.cancel();
+      emit(DoneExerciseState(accomodateExercise: accomodateExercise));
     });
   }
 }

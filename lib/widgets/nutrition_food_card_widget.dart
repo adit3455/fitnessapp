@@ -9,12 +9,14 @@ class NutritionFoodCardWidget extends StatelessWidget {
   final String subTitle;
   final String image;
   final void Function()? onTap;
+  final Widget? trailing;
   const NutritionFoodCardWidget(
       {super.key,
       required this.title,
       required this.subTitle,
       required this.image,
-      this.onTap});
+      this.onTap,
+      this.trailing});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,8 @@ class NutritionFoodCardWidget extends StatelessWidget {
           child:
               Image.network(width: 50.w, height: 50.h, fit: BoxFit.fill, image),
         ),
-        trailing: const CustomContainerButton(iconData: Icons.arrow_right),
+        trailing: trailing ??
+            const CustomContainerButton(iconData: Icons.arrow_right),
       ),
     );
   }

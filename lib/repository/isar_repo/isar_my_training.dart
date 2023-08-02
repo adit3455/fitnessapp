@@ -1,10 +1,10 @@
+import 'package:fitness_app/models/export_model.dart';
 import 'package:fitness_app/models/reminder_timer.dart';
 import 'package:fitness_app/models/training_model.dart';
 import 'package:fitness_app/repository/isar_repo/base_isar_repo.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../models/exercises_model.dart';
 import '../../models/set_weekly_goal_model.dart';
 
 class IsarMyTraining extends BaseIsarReporitories<TrainingModel> {
@@ -39,7 +39,8 @@ class IsarMyTraining extends BaseIsarReporitories<TrainingModel> {
         TrainingModelSchema,
         ExerciseModelSchema,
         SetWeeklyGoalModelSchema,
-        ReminderTimerModelSchema
+        ReminderTimerModelSchema,
+        FoodModelSchema
       ], inspector: true, directory: dir.path);
     }
 
@@ -68,6 +69,7 @@ class IsarMyTraining extends BaseIsarReporitories<TrainingModel> {
 
   Future<void> clearlExercise() async {
     final isar = await db;
-    await isar.writeTxn(() async => isar.exerciseModels.clear());
+    await isar.writeTxn(() async => await isar.exerciseModels.clear());
+    await isar.writeTxn(() async => await isar.trainingModels.clear());
   }
 }

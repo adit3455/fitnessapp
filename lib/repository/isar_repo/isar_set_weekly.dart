@@ -1,9 +1,9 @@
+import 'package:fitness_app/models/export_model.dart';
 import 'package:fitness_app/models/set_weekly_goal_model.dart';
 import 'package:fitness_app/repository/isar_repo/base_isar_repo.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../models/exercises_model.dart';
 import '../../models/reminder_timer.dart';
 import '../../models/training_model.dart';
 
@@ -32,7 +32,8 @@ class IsarSetWeekly extends BaseIsarReporitories<SetWeeklyGoalModel> {
         SetWeeklyGoalModelSchema,
         TrainingModelSchema,
         ExerciseModelSchema,
-        ReminderTimerModelSchema
+        ReminderTimerModelSchema,
+        FoodModelSchema
       ], directory: dir.path);
     }
     return Future.value(Isar.getInstance());

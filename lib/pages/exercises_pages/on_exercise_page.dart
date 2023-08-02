@@ -180,7 +180,7 @@ class OnExercisePage extends StatelessWidget {
               : TextButton(
                   onPressed: () => context
                       .read<StartExerciseBloc>()
-                      .add(NextExercise(exercises: exercises, index: index)),
+                      .add(DoneButtonExercise()),
                   child: const Text("Done"))
         ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

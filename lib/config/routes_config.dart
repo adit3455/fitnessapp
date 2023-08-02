@@ -1,4 +1,5 @@
 import 'package:fitness_app/models/export_model.dart';
+import 'package:fitness_app/pages/discover_pages/nutritions_page.dart/favorite_nutrition.dart';
 import 'package:fitness_app/pages/exercises_pages/start_exercise_page.dart';
 import 'package:fitness_app/pages/mytraining_pages/accomodate_training_page.dart';
 import 'package:fitness_app/pages/mytraining_pages/add_exercise.dart';
@@ -83,6 +84,10 @@ class AppRoutesConfig {
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/nutrition'),
             builder: (context) => const NutritionScreen());
+      case '/favoriteNutrition':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/favoriteNutrition'),
+            builder: (context) => const FavoriteNutrition());
       case '/workoutBeforeEighteen':
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/workoutBeforeEighteen'),

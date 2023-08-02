@@ -97,7 +97,19 @@ class _MyTrainingPageState extends State<MyTrainingPage> {
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemCount: state.lTraining.length,
                                   itemBuilder: (context, index) =>
-                                      _cardMyTraining(state, index, context)),
+                                      _cardMyTraining(
+                                        state,
+                                        index,
+                                        context,
+                                        () {
+                                          Navigator.pushNamed(
+                                              context, '/startExercise',
+                                              arguments: state
+                                                  .lTraining[index].lExercises
+                                                  .map((e) => e)
+                                                  .toList());
+                                        },
+                                      )),
                             ],
                           )
                   ]
@@ -108,67 +120,78 @@ class _MyTrainingPageState extends State<MyTrainingPage> {
     );
   }
 
-  Card _cardMyTraining(MyTrainigGet state, int index, BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(children: [
-          Expanded(
-            flex: 2,
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: Image.asset(AssetsUtil.runBoy,
-                    fit: BoxFit.fill, height: 70.h, width: 70.w)),
-          ),
-          const SizedBox(width: 10.0),
-          Expanded(
-            flex: 5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(state.lTraining[index].name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(fontWeight: FontWeight.bold, fontSize: 20)),
-                Text("${state.lTraining[index].lExercises.length} Exercises",
-                    style: Theme.of(context).textTheme.bodyLarge),
-              ],
+  Material _cardMyTraining(
+    MyTrainigGet state,
+    int index,
+    BuildContext context,
+    void Function()? onTap,
+  ) {
+    return Material(
+      color: Theme.of(context).colorScheme.surface,
+      borderRadius: BorderRadius.circular(20.0),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20.0),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(children: [
+            Expanded(
+              flex: 2,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Image.asset(AssetsUtil.runBoy,
+                      fit: BoxFit.fill, height: 70.h, width: 70.w)),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: DropdownButtonHideUnderline(
-                child: DropdownButton2(
-                    customButton: const Icon(Icons.more_vert_outlined,
-                        size: 25, color: Colors.grey),
-                    items: MenuItemsMyTraining.firstItems
-                        .map(
-                          (item) => DropdownMenuItem<MenuItem>(
-                            value: item,
-                            child: MenuItemsMyTraining.buildItem(item),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      MenuItemsMyTraining().onChanged(context, value!,
-                          state.lTraining[index], tController, index);
-                    },
-                    dropdownStyleData: DropdownStyleData(
-                        width: 160,
-                        padding: const EdgeInsets.symmetric(vertical: 6),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: Colors.white),
-                        offset: const Offset(0, 8)),
-                    menuItemStyleData: MenuItemStyleData(
-                        customHeights: List<double>.filled(
-                                MenuItemsMyTraining.firstItems.length, 48)
-                            .toList(),
-                        padding: const EdgeInsets.only(left: 16, right: 16)))),
-          )
-        ]),
+            const SizedBox(width: 10.0),
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(state.lTraining[index].name,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(fontWeight: FontWeight.bold, fontSize: 20)),
+                  Text("${state.lTraining[index].lExercises.length} Exercises",
+                      style: Theme.of(context).textTheme.bodyLarge),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: DropdownButtonHideUnderline(
+                  child: DropdownButton2(
+                      customButton: const Icon(Icons.more_vert_outlined,
+                          size: 25, color: Colors.grey),
+                      items: MenuItemsMyTraining.firstItems
+                          .map(
+                            (item) => DropdownMenuItem<MenuItem>(
+                              value: item,
+                              child: MenuItemsMyTraining.buildItem(item),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        MenuItemsMyTraining().onChanged(context, value!,
+                            state.lTraining[index], tController, index);
+                      },
+                      dropdownStyleData: DropdownStyleData(
+                          width: 160,
+                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.white),
+                          offset: const Offset(0, 8)),
+                      menuItemStyleData: MenuItemStyleData(
+                          customHeights: List<double>.filled(
+                                  MenuItemsMyTraining.firstItems.length, 48)
+                              .toList(),
+                          padding:
+                              const EdgeInsets.only(left: 16, right: 16)))),
+            )
+          ]),
+        ),
       ),
     );
   }

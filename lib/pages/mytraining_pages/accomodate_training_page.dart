@@ -63,13 +63,24 @@ class AccomodateExercisePage extends StatelessWidget {
                                               content: Text(
                                                   "you must fill the form!")));
                                     }
-                                    if (tController.text.isNotEmpty) {
+                                    if ((state as AddExerciseState)
+                                            .lAccomodateAdd
+                                            .length <
+                                        3) {
+                                      Navigator.pop(context);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "Set your exercise more than 3 to make your exercise better")));
+                                    }
+
+                                    if (tController.text.isNotEmpty &&
+                                        (state).lAccomodateAdd.length >= 3) {
                                       context.read<MyTrainingBloc>().add(
                                           SaveTraining(
                                               name: tController.text,
                                               lExercises:
-                                                  (state as AddExerciseState)
-                                                      .lAccomodateAdd));
+                                                  (state).lAccomodateAdd));
                                       Navigator.pushNamedAndRemoveUntil(
                                           context, '/', (route) => false);
                                     }

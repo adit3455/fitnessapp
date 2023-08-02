@@ -1,14 +1,21 @@
+import 'package:isar/isar.dart';
+
+part 'food_model.g.dart';
+
+@Collection()
 class FoodModel {
-  final String name;
-  final String image;
-  final String description;
-  final String type;
-  final String calories;
-  final String kcal;
-  final String fat;
-  final String protein;
-  final String carbo;
+  Id id;
+  String name;
+  String image;
+  String description;
+  String type;
+  String calories;
+  String kcal;
+  String fat;
+  String protein;
+  String carbo;
   FoodModel({
+    this.id = Isar.autoIncrement,
     required this.name,
     required this.image,
     required this.description,

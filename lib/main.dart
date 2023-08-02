@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fitness_app/blocs/my_training_bloc/my_training_bloc.dart';
+import 'package:fitness_app/blocs/nutrition_bookmarks_bloc/nutrition_bookmarks_bloc.dart';
 import 'package:fitness_app/blocs/set_weekly_goal_bloc/set_weekly_goal_bloc.dart';
 import 'package:fitness_app/config/exercise_config.dart';
 import 'package:fitness_app/config/routes_config.dart';
 import 'package:fitness_app/repository/auth_repository.dart';
 import 'package:fitness_app/repository/firebase_exercise_module.dart/firebase_exercise_module.dart';
 import 'package:fitness_app/repository/isar_repo/isar_my_training.dart';
+import 'package:fitness_app/repository/isar_repo/isar_nutrition_.dart';
 import 'package:fitness_app/repository/isar_repo/isar_set_weekly.dart';
 import 'package:fitness_app/utils/app_utils.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +37,9 @@ void main() async {
               BlocProvider(
                   create: (context) =>
                       StartExerciseBloc(exerciseConfig: ExerciseConfig())),
+              BlocProvider(
+                  create: (context) =>
+                      NutritionBookmarksBloc(isarNutrition: IsarNutrition())),
               BlocProvider(
                   create: (context) =>
                       MyTrainingBloc(isarMyTraining: IsarMyTraining())),

@@ -134,13 +134,9 @@ class DoneExerciseScreen extends StatelessWidget {
                                   title: "Reminder",
                                   subTitle: "06:00",
                                   trailing: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, '/setReminder'),
                                       icon: const Icon(Icons.edit))),
-                              const SizedBox(height: 20.0),
-                              _listTileDoneExercise(context,
-                                  title: "Height",
-                                  subTitle: "168.0 Cm",
-                                  trailing: const Icon(Icons.person)),
                               const SizedBox(height: 20.0),
                               _listTileDoneExercise(context,
                                   title: "Exercised You Done!",
@@ -158,7 +154,7 @@ class DoneExerciseScreen extends StatelessWidget {
                                     child: Image.asset(AssetsUtil.manWomanPose,
                                         fit: BoxFit.cover),
                                   )),
-                              const SizedBox(height: 20.0),
+                              SizedBox(height: 50.0.h),
                               Center(
                                 child: CustomButtonWidget(
                                   labelButton: "Back To Home",
@@ -228,7 +224,10 @@ class DoneExerciseScreen extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         title: Text(
           title,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
           subTitle,

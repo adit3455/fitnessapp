@@ -1,3 +1,4 @@
+import 'package:fitness_app/blocs/nutrition_bookmarks_bloc/nutrition_bookmarks_bloc.dart';
 import 'package:fitness_app/repository/firebase_service/nutrition_firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,16 +13,38 @@ import '../../../widgets/nutrition_card_widget.dart';
 import '../../../widgets/nutrition_food_card_widget.dart';
 import '../../../widgets/title_app_bar.dart';
 
-class NutritionScreen extends StatelessWidget {
+class NutritionScreen extends StatefulWidget {
   const NutritionScreen({super.key});
 
   @override
+  State<NutritionScreen> createState() => _NutritionScreenState();
+}
+
+class _NutritionScreenState extends State<NutritionScreen> {
+  final searchC = TextEditingController();
+
+  @override
+  void dispose() {
+    searchC.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final searchC = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const TitleAppBar(leftText: "Nutrition", rightText: "Screen"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/favoriteNutrition');
+                context
+                    .read<NutritionBookmarksBloc>()
+                    .add(StartedNutritionEvent());
+              },
+              icon: const Icon(Icons.favorite, color: Colors.red))
+        ],
       ),
       body: BlocProvider(
         create: (context) => FetchNutritionBloc(

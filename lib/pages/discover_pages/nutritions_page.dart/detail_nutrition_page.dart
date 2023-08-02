@@ -1,4 +1,5 @@
 import 'package:card_loading/card_loading.dart';
+import 'package:fitness_app/blocs/nutrition_bookmarks_bloc/nutrition_bookmarks_bloc.dart';
 import 'package:fitness_app/models/export_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,7 +78,15 @@ class DetailNutritionPage extends StatelessWidget {
                                         fontSize: 20.0),
                                   ]),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.read<NutritionBookmarksBloc>().add(
+                                        SaveNutritionEvent(
+                                            foodModel: foodModel));
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content:
+                                                Text("Saved to Favorites!")));
+                                  },
                                   icon: const Icon(Icons.favorite,
                                       color: Colors.red))
                             ]),
