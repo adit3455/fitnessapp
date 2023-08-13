@@ -13,11 +13,12 @@ class RowMainSpaceBetweenText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.symmetric(vertical: 20.0),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text(
-            left,
-            style: Theme.of(context).textTheme.bodyLarge,
+        child: Row(children: [
+          Expanded(
+            child: Text(
+              left,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ),
           Text(right, style: Theme.of(context).textTheme.bodyLarge)
         ]));

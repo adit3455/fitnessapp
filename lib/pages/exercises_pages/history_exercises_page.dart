@@ -199,11 +199,11 @@ class HistoryExercisesPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 10.0),
-                          state.calendarFormat == state.calendarFormat
+                          getEventForDay(state.selectedDay).isNotEmpty
                               ? ListView(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
-                                  children: doneExercisesList
+                                  children: getEventForDay(state.selectedDay)
                                       .map((e) => Card(
                                             child: Padding(
                                               padding:
@@ -266,101 +266,28 @@ class HistoryExercisesPage extends StatelessWidget {
                                           ))
                                       .toList(),
                                 )
-                              : getEventForDay(state.selectedDay).isNotEmpty
-                                  ? ListView(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      children:
-                                          getEventForDay(state.selectedDay)
-                                              .map((e) => Card(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(e.date,
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyLarge!
-                                                                  .copyWith(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600)),
-                                                          Text(
-                                                            "${e.accomodateExercises.length} Exercises",
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyMedium!
-                                                                .copyWith(
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade600),
-                                                          ),
-                                                          const Divider(),
-                                                          ...List.generate(
-                                                              e.accomodateExercises
-                                                                  .length,
-                                                              (index) =>
-                                                                  ListTile(
-                                                                    contentPadding:
-                                                                        const EdgeInsets.all(
-                                                                            5.0),
-                                                                    leading:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      child: Image.network(
-                                                                          e.accomodateExercises[index]
-                                                                              .image,
-                                                                          fit: BoxFit.fill),
-                                                                    ),
-                                                                    title: Text(e
-                                                                        .accomodateExercises[
-                                                                            index]
-                                                                        .name),
-                                                                    subtitle: Text(e
-                                                                        .accomodateExercises[
-                                                                            index]
-                                                                        .dificulities
-                                                                        .capitalize),
-                                                                  )),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ))
-                                              .toList(),
-                                    )
-                                  : Column(
-                                      children: [
-                                        Center(
-                                            child: Text(
-                                                "You Haven't done any exercises on this date :(",
-                                                textAlign: TextAlign.center,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleLarge)),
-                                        const SizedBox(height: 10.0),
-                                        TextButton(
-                                            onPressed: () => context
-                                                .read<CalendarImplementsBloc>()
-                                                .add(SeeAllHistory(
-                                                    calendarFormat:
-                                                        state.calendarFormat,
-                                                    timeNow: state.timeNow,
-                                                    selectedDate:
-                                                        state.selectedDay)),
-                                            child: const Text(
-                                                "See All Exercises?"))
-                                      ],
-                                    )
+                              : Column(
+                                  children: [
+                                    Center(
+                                        child: Text(
+                                            "You Haven't done any exercises on this date :(",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge)),
+                                    const SizedBox(height: 10.0),
+                                    TextButton(
+                                        onPressed: () => context
+                                            .read<CalendarImplementsBloc>()
+                                            .add(SeeAllHistory(
+                                                calendarFormat:
+                                                    state.calendarFormat,
+                                                timeNow: state.timeNow,
+                                                selectedDate:
+                                                    state.selectedDay)),
+                                        child: const Text("See All Exercises?"))
+                                  ],
+                                )
                         ],
                       );
                     }
