@@ -9,6 +9,11 @@ abstract class ReportsExerciseState extends Equatable {
 
 class ReportsExerciseInitial extends ReportsExerciseState {}
 
+class ReportsIsEmptyState extends ReportsExerciseState {
+  @override
+  List<Object?> get props => [];
+}
+
 class ReportsLoaded extends ReportsExerciseState {
   final List<DoneExerciseModel>? doneExerciseModel;
   final DateTime dateTimeNow;

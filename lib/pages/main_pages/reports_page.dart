@@ -5,16 +5,19 @@ import 'package:fitness_app/models/done_exercise_model.dart';
 import 'package:fitness_app/pages/exercises_pages/history_exercises_page.dart';
 import 'package:fitness_app/repository/firebase_exercise_module.dart/firebase_exercise_module.dart';
 import 'package:fitness_app/widgets/custom_bold_title.dart';
+import 'package:fitness_app/widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../blocs/reports_exercise_bloc/reports_exercise_bloc.dart';
 import '../../utils/app_utils.dart';
 import '../../utils/assets_util.dart';
+import '../exercises_pages/exercise_tracker_page.dart';
 
 class ReportsPage extends StatelessWidget {
   const ReportsPage({super.key});
@@ -96,7 +99,32 @@ class ReportsPage extends StatelessWidget {
                               if (state is ReportsExerciseInitial) {
                                 return const Center(
                                     child: CircularProgressIndicator());
-                              } else if (state is ReportsLoaded) {
+                              }
+                              if (state is ReportsIsEmptyState) {
+                                return Center(
+                                    child: Column(
+                                  children: [
+                                    SizedBox(height: 140.0.h),
+                                    const CustomBoldTitle(
+                                        title: "You Havent Done Any Exercises",
+                                        textColor: Colors.black,
+                                        fontSize: 20,
+                                        paddingSize: 0),
+                                    SizedBox(height: 20.h),
+                                    CustomButtonWidget(
+                                      labelButton:
+                                          "Start Your First Exercises?",
+                                      icon: Icons.arrow_right,
+                                      onPressed: () => PersistentNavBarNavigator
+                                          .pushNewScreen(context,
+                                              screen:
+                                                  const ExerciseTrackerPage(),
+                                              withNavBar: false),
+                                    )
+                                  ],
+                                ));
+                              }
+                              if (state is ReportsLoaded) {
                                 final CalendarConfig calendarConfig =
                                     CalendarConfig(l: state.doneExerciseModel!);
 
@@ -237,8 +265,9 @@ class ReportsPage extends StatelessWidget {
                                     ),
                                   ],
                                 );
+                              } else {
+                                return const Text("Theres Something Wrong");
                               }
-                              return const Text("Theres Something Wrong");
                             },
                           )
                         ])),

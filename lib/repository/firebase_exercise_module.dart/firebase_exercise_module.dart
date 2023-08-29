@@ -53,6 +53,18 @@ class FirebaseExerciseModule extends BaseFirebaseExerciseModule {
     }
   }
 
+  Future<List<DoneExerciseModel>> getDoneExercise2() async {
+    final snapshot = await db
+        .collection('userExercise')
+        .doc("${fbAuth.currentUser?.uid}")
+        .collection('dateExercise')
+        .get();
+    final data =
+        snapshot.docs.map((e) => DoneExerciseModel.fromMap(e.data())).toList();
+
+    return data;
+  }
+
   Future<Either<DoneExerciseModel, FailureModel>> getUserExercise() async {
     try {
       final snapshot = await db

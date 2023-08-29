@@ -1,10 +1,10 @@
 import 'package:card_loading/card_loading.dart';
+import 'package:fitness_app/pages/auth_pages/succes_regis_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icons_plus/icons_plus.dart';
-
 import '../../blocs/auth_bloc/auth_bloc.dart';
 import '../../blocs/obscure_form_cubit/obscure_form_cubit.dart';
 import '../../widgets/custom_button_widget.dart';
@@ -25,7 +25,10 @@ class LoginPage extends StatelessWidget {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Authenticated) {
-            Navigator.pushReplacementNamed(context, '/successRegis');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SuccessRegistrationPage()));
           }
           if (state is AuthError) {
             ScaffoldMessenger.of(context)
